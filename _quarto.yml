@@ -16,7 +16,7 @@ website:
       - text: "Take-home exercise"  
         menu: 
           - text: "Take-home exercise 1"
-            href: "Take-home_Ex/Take-homea_Ex01"
+            href: "Take-home_Ex/Take-home_Ex01"
     right:
       - href: index.qmd
         text: Home
@@ -24,7 +24,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: morph
     css: styles.css
     toc: true
 
