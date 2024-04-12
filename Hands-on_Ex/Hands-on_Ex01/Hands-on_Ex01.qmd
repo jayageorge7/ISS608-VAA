@@ -3,6 +3,10 @@ title: "Hands-on Exercise 1"
 author: "Jaya George"
 ---
 
+# *Getting Started*
+
+## *Installing and loading the required libraries*
+
 ```{r}
 library("pacman")
 
@@ -16,19 +20,19 @@ pacman::p_load(tidyverse)
 library(readr)
 ```
 
+## *Importing data*
+
 ```{r}
-exam_data <- read_csv("C:/jayageorge7/ISS608-VAA/Hands-on_Ex/Hands-on_Ex01/data/Exam_data.csv")
+exam_data <- read_csv("C:/jayageorge7/ISS608-VAA/Hands-on_Ex/Hands-on_Ex01/data/Exam_data.csv",show_col_types = FALSE)
 ```
+# *Introducing ggplot*
+
+## *R Graphics VS ggplot*
+
+### *R Graphics*
 
 ```{r}
 hist(exam_data$MATHS)
-
-```
-
-```{}
-```
-
-```{r}
 
 ```
 
@@ -36,18 +40,31 @@ hist(exam_data$MATHS)
 library(ggplot2)
 ```
 
+### *ggplot2*
+
 ```{r}
 ggplot(data=exam_data, aes(x = MATHS)) + geom_histogram(bins=10, boundary = 100, color="black", fill="grey") + ggtitle("Distribution of Maths scores")
 ```
+
+# *Grammar of graphics*
+
+
+## *Essential Grammatical Elements in ggplot2: data*
 
 ```{r}
 ggplot(data=exam_data)
 ```
 
+## *Aesthetic mappings*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x= MATHS))
 ```
+
+## *geom*
+
+### *geom_bar*
 
 ```{r}
 ggplot(data=exam_data, 
@@ -55,11 +72,15 @@ ggplot(data=exam_data,
   geom_bar()
 ```
 
+### *geom_dotplot*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x = MATHS)) +
   geom_dotplot(dotsize = 0.5)
 ```
+
+### *using scale_y_continuous*
 
 ```{r}
 ggplot(data=exam_data, 
@@ -70,11 +91,15 @@ ggplot(data=exam_data,
                      breaks = NULL)  
 ```
 
+### *geom_histogram()*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x = MATHS)) +
   geom_histogram()       
 ```
+
+### *geom_histogram() with fill*
 
 ```{r}
 ggplot(data=exam_data, 
@@ -84,6 +109,8 @@ ggplot(data=exam_data,
                  fill="light blue")  
 ```
 
+### *geom_histogram() with fill by sub-group*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x= MATHS, 
@@ -92,11 +119,15 @@ ggplot(data=exam_data,
                  color="grey30")
 ```
 
+### *geom-density()*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x = MATHS)) +
   geom_density()           
 ```
+
+### *geom-density() with fill by sub-group*
 
 ```{r}
 ggplot(data=exam_data, 
@@ -105,12 +136,16 @@ ggplot(data=exam_data,
   geom_density()
 ```
 
+### *geom_boxplot()*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(y = MATHS,       
            x= GENDER)) +    
   geom_boxplot()            
 ```
+
+### *geom_boxplot() in notched plot*
 
 ```{r}
 ggplot(data=exam_data, 
@@ -119,6 +154,8 @@ ggplot(data=exam_data,
   geom_boxplot(notch=TRUE)
 ```
 
+### *geom_violin()*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(y = MATHS, 
@@ -126,12 +163,16 @@ ggplot(data=exam_data,
   geom_violin()
 ```
 
+### *geom_point()*
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x= MATHS, 
            y=ENGLISH)) +
   geom_point()            
 ```
+
+### *Combination of geom objects*
 
 ```{r}
 ggplot(data=exam_data, 
@@ -142,11 +183,17 @@ ggplot(data=exam_data,
              size = 0.5)        
 ```
 
+### **geom_boxplot()**
+
 ```{r}
 ggplot(data=exam_data, 
        aes(y = MATHS, x= GENDER)) +
   geom_boxplot()
 ```
+
+## **Exploring statistical functions**
+
+###**using stat_summary()**
 
 ```{r}
 ggplot(data=exam_data, 
@@ -158,6 +205,8 @@ ggplot(data=exam_data,
                size=4)               
 ```
 
+### **using geom() method**
+
 ```{r}
 ggplot(data=exam_data, 
        aes(y = MATHS, x= GENDER)) +
@@ -168,12 +217,16 @@ ggplot(data=exam_data,
              size=4)          
 ```
 
+### **plot best fit curve**
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x= MATHS, y=ENGLISH)) +
   geom_point() +
   geom_smooth(linewidth=0.5)
 ```
+
+### **override default smoothing method**
 
 ```{r}
 ggplot(data=exam_data, 
@@ -184,12 +237,18 @@ ggplot(data=exam_data,
               size=0.5)
 ```
 
+## **Essential Grammatical Elements in ggplot2: Facets**
+
+### **Working with `facet_wrap()**
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x= MATHS)) +
   geom_histogram(bins=20) +
     facet_wrap(~ CLASS)
 ```
+
+### **facet_grid() function**
 
 ```{r}
 ggplot(data=exam_data, 
@@ -198,11 +257,17 @@ ggplot(data=exam_data,
     facet_grid(~ CLASS)
 ```
 
+## **Essential Grammatical Elements in ggplot2: Coordinates**
+
+### **Working with Coordinate**
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x=RACE)) +
   geom_bar()
 ```
+
+### using coord_flip
 
 ```{r}
 ggplot(data=exam_data, 
@@ -211,12 +276,18 @@ ggplot(data=exam_data,
   coord_flip()
 ```
 
+### **Changing the y- and x-axis range**
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x= MATHS, y=ENGLISH)) +
   geom_point() +
   geom_smooth(method=lm, size=0.5)
 ```
+
+## **Essential Grammatical Elements in ggplot2: themes**
+
+### **Working with theme**
 
 ```{r}
 ggplot(data=exam_data, 
@@ -236,6 +307,8 @@ ggplot(data=exam_data,
   theme_gray()
 ```
 
+### **using theme_classic()**
+
 ```{r}
 ggplot(data=exam_data, 
        aes(x=RACE)) +
@@ -243,6 +316,8 @@ ggplot(data=exam_data,
   coord_flip() +
   theme_classic()
 ```
+
+### **using theme_minimal()**  
 
 ```{r}
 ggplot(data=exam_data, 

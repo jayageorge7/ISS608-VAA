@@ -2,10 +2,5 @@
 title: "ISS608-VAA"
 ---
 
-This is a Quarto website. welcome jaya
+Welcome to Jaya George's Visual Analytics Website
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
