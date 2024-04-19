@@ -1,0 +1,32 @@
+---
+title: "In-class Exercise 1"
+author: "Jaya George"
+date: "April 13,2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+```{r}
+pacman::p_load(tidyverse)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+realis <- read_csv("data/realis2019.csv")
+```
+
+```{r}
+realis.csv <- read.csv("data/realis2019.csv")
+```
+
+```{r}
+ggplot(data=realis,
+       aes(x= `Unit Price ($ psm)`))
+```

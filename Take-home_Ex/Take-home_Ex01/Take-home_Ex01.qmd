@@ -1,0 +1,236 @@
+---
+title: "Take-home Exercise 1"
+author: "Jaya George"
+date: "April 17,2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+```{r}
+library("pacman")
+```
+
+```{r}
+pacman::p_load(tidyverse)
+```
+
+```{r}
+library(readr)
+```
+
+```{r}
+res_data1 <- read_csv("data/ResidentialTransaction20240308160536.csv",show_col_types = FALSE)
+res_data2 <- read_csv("data/ResidentialTransaction20240308160736.csv",show_col_types = FALSE)
+res_data3 <- read_csv("data/ResidentialTransaction20240308161009.csv",show_col_types = FALSE)
+res_data4 <- read_csv("data/ResidentialTransaction20240308161109.csv",show_col_types = FALSE)
+res_data5 <- read_csv("data/ResidentialTransaction20240414220633.csv",show_col_types = FALSE)
+res_data <- bind_rows(res_data1, res_data2, res_data3, res_data4, res_data5)
+
+```
+
+```{r}
+nrow(res_data)
+
+```
+
+```{r}
+glimpse(res_data)
+```
+
+```{r}
+res_data[duplicated(res_data),]
+```
+
+```{r}
+res_data_final = res_data %>% 
+  select("Property Type", "Area (SQFT)","Unit Price ($ PSF)","Sale Date","Transacted Price ($)","Postal District","Type of Sale","Planning Region","Planning Area","Purchaser Address Indicator") %>%
+  rename("Property_Type" = "Property Type",
+         "Area_sqft" = "Area (SQFT)",
+         "Unit_Price_sqft"="Unit Price ($ PSF)",
+         "Sale_Date"="Sale Date",
+         "Sale_Price"="Transacted Price ($)",
+         "Postal_District"="Postal District",
+         "Sale_Type"="Type of Sale",
+         "Planning_Region"="Planning Region",
+         "Planning_Area"="Planning Area",
+         "Purchaser_Address_Indicator"="Purchaser Address Indicator")
+```
+
+```{r, fig.width=20, fig.height=10}
+# Create the box plot
+ggplot(res_data_final, aes(x = Property_Type, y = Unit_Price_sqft)) +
+  geom_boxplot() +  facet_wrap(~ Planning_Region) +
+  labs(
+    title = "Price Distribution by Property Type (Q1 2024)",
+    x = "Property Type",
+    y = "Price"
+  ) +
+  scale_y_continuous(breaks = seq(0, max(res_data_final$Unit_Price_sqft), by = 500))+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x-axis labels
+
+
+```
+
+```{r}
+# Pre-calculate the count of transactions in each combination (Planning Region, Property Type)
+transaction_counts <- res_data_final %>%
+  count(Property_Type,Planning_Region)  
+
+# Create the heatmap with calculated counts
+ggplot(transaction_counts, aes(x = Property_Type, y = Planning_Region)) +
+  geom_tile(aes(fill = n), colour = "white") +  # Use 'n' (count) for fill intensity
+  scale_color_viridis_c()+
+  labs(
+    x = "Planning Region",
+    y = "Property Type",
+    title = "Count of Property Sales by Planning Region and Property Type"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+
+```
+
+```{r}
+
+transaction_counts <- res_data_final %>%
+  count(Property_Type, Sale_Type) 
+
+ggplot(transaction_counts, aes(x = Property_Type, y = n, fill = Sale_Type)) +
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+```{r}
+library(ggplot2)
+library(forcats) # for working with factors
+
+# Assuming your data is in a dataframe called 'df'
+# Rotate the y-axis labels for better readability
+p <- ggplot(res_data_final, aes(x = fct_reorder(Planning_Region, n), y = fct_reorder(Property_Type, n), fill = n)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "steelblue") + # Use a gradient that works well for counts
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1), # Rotate x labels for better fit
+    axis.text.y = element_text(size = 8) # Adjust text size as needed
+  ) +
+  labs(x = "Planning Region", y = "Property Type", fill = "Count") # Label your axes and legend
+
+# Print the plot
+print(p)
+
+
+```
+
+```{r}
+# Pre-calculate the count of transactions in each combination (Planning Region, Property Type)
+transaction_counts <- res_data_final %>%
+  count(Property_Type,Planning_Area)  
+
+# Create the heatmap with calculated counts
+ggplot(transaction_counts, aes(x = Property_Type, y = Planning_Area)) +
+  geom_tile(aes(fill = n), colour = "white") +  # Use 'n' (count) for fill intensity
+  scale_color_viridis_c()+
+  labs(
+    x = "Planning Region",
+    y = "Property Type",
+    title = "Count of Property Sales by Planning Region and Property Type"
+  ) +
+   theme(axis.text.x = element_text(angle = 45, hjust = 1), # Rotate x labels for better fit
+    axis.text.y = element_text(size = 5)) # Adjust text size as needed
+	
+
+```
+
+```{r}
+
+transaction_counts <- res_data_final %>%
+  count(Planning_Region,Property_Type) 
+
+ggplot(transaction_counts, aes(x = Planning_Region, y = n, fill = Property_Type)) +
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+```{r, fig.width=12, fig.height=6}
+
+
+transaction_counts <- res_data_final %>%
+  count(Planning_Area,Property_Type) 
+
+ggplot(transaction_counts, aes(x = Planning_Area, y = n, fill = Property_Type)) +
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+```{r}
+library(ggplot2)
+library(tidyverse)  # Might be needed 
+
+# Assuming your data is in a data frame called 'realis_data' 
+# Replace with your actual column names
+
+ggplot(res_data_final, aes(x = Unit_Price_sqft,fill = Sale_Type)) +
+  geom_histogram(bins = 30) +  # Adjust 'bins' for desired resolution
+  labs(
+    x = "Unit Size",
+    y = "Count",
+    title = "Distribution of Unit Size by Planning Region and Sale Type"
+  ) +
+  theme(strip.text = element_text(size = 10))  # Adjust strip text size, if needed
+
+```
+
+```{r}
+library(ggplot2)
+
+# Assuming your data is in a dataframe called `df`
+# with 'unit_size' and 'sale_type' columns
+ggplot(res_data_final, aes(x = Unit_Price_sqft, fill = Sale_Type)) + 
+  geom_histogram(position = "dodge", binwidth = 20) + 
+  labs(title = "Distribution of Unit Size by Sale Type",
+       x = "Unit Size",
+       y = "Count") + 
+  scale_x_continuous(breaks = seq(0, max(res_data_final$Unit_Price_sqft), by = 500))+
+  scale_fill_brewer(palette = "Set1")  # Optional: Adds a color palette
+
+```
+
+```{r}
+ggplot(data=res_data_final, 
+       aes(x= Unit_Price_sqft, 
+           fill = Sale_Type)) +  facet_grid(Planning_Region)
+  geom_histogram(bins=20, 
+                 color="grey30")
+```
+
+```{r}
+ggplot(data=res_data_final, 
+       aes(x = Unit_Price_sqft,colour = Sale_Type)) +
+  geom_density()           
+```
+
+```{r}
+
+ggplot(data=res_data_final, 
+       aes(x = Area_sqft,colour = Sale_Type)) +
+  geom_density()  
+```
