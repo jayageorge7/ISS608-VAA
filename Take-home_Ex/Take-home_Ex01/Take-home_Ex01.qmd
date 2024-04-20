@@ -141,28 +141,7 @@ sum(is.na(res_data_final$Planning_Region))
 sum(is.na(res_data_final$Planning_Area))
 ```
 
-```{r}
-# Create the ridge plot
-SES_ridgeplot <-ggplot(res_data_final, aes(x = Unit_Price_sqft, y = Property_Type, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
-  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
-  scale_fill_viridis_c(name = "Tail probability", direction = -1) +
-  facet_wrap(~ Subject, scales = "free_x") + # Faceting by subject
-  labs(title = "Students with more advantageous socioeconomic status tend to perform better",
-       subtitle = "Density plots of performance stratified by socioeconomic status",
-       x = "Score") +
-  scale_x_continuous(limits = c(0, 1000)) + 
-  theme_minimal() +
-  theme(legend.position = "none", # Hides the legend
-        axis.title.x = element_blank(), # Hides the x-axis title
-        axis.title.y = element_blank(),
-        axis.text.x = element_blank(), # Hides the x-axis text/numbers
-        axis.ticks.x = element_blank(), # Hides the x-axis ticks
-        plot.title = element_text(face = "bold", size = 12),
-        plot.subtitle = element_text(size = 8))
-
-SES_ridgeplot
-
-
+```{}
 ```
 
 ```{r}
