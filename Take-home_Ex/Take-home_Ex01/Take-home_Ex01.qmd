@@ -141,7 +141,7 @@ sum(is.na(res_data_final$Planning_Region))
 sum(is.na(res_data_final$Planning_Area))
 ```
 
-```{}
+```         
 ```
 
 ```{r}
@@ -160,22 +160,10 @@ ggplot(res_data_final, aes(x = Unit_Price_sqft, y = Property_Type, fill = Proper
 
 ```
 
-```{r, fig.width=20, fig.height=10}
-# Create the box plot
-ggplot(res_data_final, aes(x = Property_Type, y = Unit_Price_sqft)) +
-  geom_boxplot() +  facet_wrap(~ Planning_Region) +
-  labs(
-    title = "Price Distribution by Property Type (Q1 2024)",
-    x = "Property Type",
-    y = "Price"
-  ) +
-  scale_y_continuous(breaks = seq(0, max(res_data_final$Unit_Price_sqft), by = 500))+
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x-axis labels
-
-
+```{}
 ```
 
-```{r, fig.width=15, fig.height=8}
+```{r, fig.width=18, fig.height=5}
 # Create the box plot
 ggplot(res_data_final, aes(x = Property_Type, y = Unit_Price_sqft)) +
   geom_boxplot() +  facet_grid(~ Planning_Region) +
@@ -190,22 +178,7 @@ ggplot(res_data_final, aes(x = Property_Type, y = Unit_Price_sqft)) +
 
 ```
 
-```{r}
-# Pre-calculate the count of transactions in each combination (Planning Region, Property Type)
-transaction_counts <- res_data_final %>%
-  count(Property_Type,Planning_Region)  
-
-# Create the heatmap with calculated counts
-ggplot(transaction_counts, aes(x = Property_Type, y = Planning_Region)) +
-  geom_tile(aes(fill = n), colour = "white") +  # Use 'n' (count) for fill intensity
-  scale_color_viridis_c()+
-  labs(
-    x = "Planning Region",
-    y = "Property Type",
-    title = "Count of Property Sales by Planning Region and Property Type"
-  ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
-
+```{}
 ```
 
 ```{r}
@@ -223,46 +196,7 @@ ggplot(transaction_counts, aes(x = Property_Type, y = n, fill = Sale_Type)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
 ```
 
-```{r}
-library(ggplot2)
-library(forcats) # for working with factors
-
-# Assuming your data is in a dataframe called 'df'
-# Rotate the y-axis labels for better readability
-p <- ggplot(res_data_final, aes(x = fct_reorder(Planning_Region, n), y = fct_reorder(Property_Type, n), fill = n)) +
-  geom_tile() +
-  scale_fill_gradient(low = "white", high = "steelblue") + # Use a gradient that works well for counts
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1), # Rotate x labels for better fit
-    axis.text.y = element_text(size = 8) # Adjust text size as needed
-  ) +
-  labs(x = "Planning Region", y = "Property Type", fill = "Count") # Label your axes and legend
-
-# Print the plot
-print(p)
-
-
-```
-
-```{r}
-# Pre-calculate the count of transactions in each combination (Planning Region, Property Type)
-transaction_counts <- res_data_final %>%
-  count(Property_Type,Planning_Area)  
-
-# Create the heatmap with calculated counts
-ggplot(transaction_counts, aes(x = Property_Type, y = Planning_Area)) +
-  geom_tile(aes(fill = n), colour = "white") +  # Use 'n' (count) for fill intensity
-  scale_color_viridis_c()+
-  labs(
-    x = "Planning Region",
-    y = "Property Type",
-    title = "Count of Property Sales by Planning Region and Property Type"
-  ) +
-   theme(axis.text.x = element_text(angle = 45, hjust = 1), # Rotate x labels for better fit
-    axis.text.y = element_text(size = 5)) # Adjust text size as needed
-	
-
+```{}
 ```
 
 ```{r}
@@ -315,37 +249,10 @@ ggplot(res_data_final, aes(x = Unit_Price_sqft,fill = Sale_Type)) +
 ```
 
 ```{r}
-library(ggplot2)
-
-# Assuming your data is in a dataframe called `df`
-# with 'unit_size' and 'sale_type' columns
-ggplot(res_data_final, aes(x = Unit_Price_sqft, fill = Sale_Type)) + 
-  geom_histogram(position = "dodge", binwidth = 20) + 
-  labs(title = "Distribution of Unit Size by Sale Type",
-       x = "Unit Size",
-       y = "Count") + 
-  scale_x_continuous(breaks = seq(0, max(res_data_final$Unit_Price_sqft), by = 500))+
-  scale_fill_brewer(palette = "Set1")  # Optional: Adds a color palette
-
-```
-
-```{r}
-ggplot(data=res_data_final, 
-       aes(x= Unit_Price_sqft, 
-           fill = Sale_Type)) +  facet_grid(Planning_Region)
-  geom_histogram(bins=20, 
-                 color="grey30")
-```
-
-```{r}
 ggplot(data=res_data_final, 
        aes(x = Unit_Price_sqft,colour = Sale_Type)) +
   geom_density()           
 ```
 
-```{r}
-
-ggplot(data=res_data_final, 
-       aes(x = Area_sqft,colour = Sale_Type)) +
-  geom_density()  
+```{}
 ```
