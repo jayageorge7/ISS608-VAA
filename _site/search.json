@@ -229,5 +229,33 @@
     "title": "In-class Exercise 1",
     "section": "",
     "text": "pacman::p_load(tidyverse)\n\n\nlibrary(tidyverse)\n\n\nrealis &lt;- read_csv(\"data/realis2019.csv\")\n\n\nrealis.csv &lt;- read.csv(\"data/realis2019.csv\")\n\n\nggplot(data=realis,\n       aes(x= `Unit Price ($ psm)`))"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex02/In-class_Ex02.html",
+    "href": "In-class_Ex/In-class_Ex02/In-class_Ex02.html",
+    "title": "In-class_Ex02",
+    "section": "",
+    "text": "pacman::p_load(tidyverse,ggrepel, ggdist, ggridges,colorspace,ggthemes) \n\n\n\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\",show_col_types = FALSE)\n\n\n\n\n\nggplot(data=exam_data, \n       aes(x = ENGLISH))+ \n  geom_density(\n    color='#1696d2',\n    adjust=.65,\n      alpha= .6\n  )\n\n\n\n\n\n\n\n\nmedian_eng &lt;- median(exam_data$ENGLISH)\nmean_eng &lt;- mean(exam_data$ENGLISH)\nstd_eng &lt;- sd(exam_data$ENGLISH)\n\nggplot(data=exam_data, \n       aes(x = ENGLISH))+ \n  geom_density(\n    color='#1696d2',\n    adjust=.65,\n      alpha= .6\n  )+\n  stat_function(\n    fun = dnorm,\n    args = list(mean = mean_eng,\n                sd=std_eng),\n    col=\"grey30\",\n    size =.8)+\n  geom_vline(\n    aes(xintercept = mean_eng),\n    colour=\"4d5887\",\n    linewidth=.6,\n    linetype=\"dashed\")+\n  annotate(geom=\"text\",\n           x=mean_eng-8,\n           y=0.04,\n           label=paste0(\"Mean ENGLISH: \",\n                        round((mean_eng),2)))"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex02/In-class_Ex02.html#importing-data",
+    "href": "In-class_Ex/In-class_Ex02/In-class_Ex02.html#importing-data",
+    "title": "In-class_Ex02",
+    "section": "",
+    "text": "exam_data &lt;- read_csv(\"data/Exam_data.csv\",show_col_types = FALSE)"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex02/In-class_Ex02.html#plot-as-a-probability-density-curve",
+    "href": "In-class_Ex/In-class_Ex02/In-class_Ex02.html#plot-as-a-probability-density-curve",
+    "title": "In-class_Ex02",
+    "section": "",
+    "text": "ggplot(data=exam_data, \n       aes(x = ENGLISH))+ \n  geom_density(\n    color='#1696d2',\n    adjust=.65,\n      alpha= .6\n  )"
+  },
+  {
+    "objectID": "In-class_Ex/In-class_Ex02/In-class_Ex02.html#alternative-design",
+    "href": "In-class_Ex/In-class_Ex02/In-class_Ex02.html#alternative-design",
+    "title": "In-class_Ex02",
+    "section": "",
+    "text": "median_eng &lt;- median(exam_data$ENGLISH)\nmean_eng &lt;- mean(exam_data$ENGLISH)\nstd_eng &lt;- sd(exam_data$ENGLISH)\n\nggplot(data=exam_data, \n       aes(x = ENGLISH))+ \n  geom_density(\n    color='#1696d2',\n    adjust=.65,\n      alpha= .6\n  )+\n  stat_function(\n    fun = dnorm,\n    args = list(mean = mean_eng,\n                sd=std_eng),\n    col=\"grey30\",\n    size =.8)+\n  geom_vline(\n    aes(xintercept = mean_eng),\n    colour=\"4d5887\",\n    linewidth=.6,\n    linetype=\"dashed\")+\n  annotate(geom=\"text\",\n           x=mean_eng-8,\n           y=0.04,\n           label=paste0(\"Mean ENGLISH: \",\n                        round((mean_eng),2)))"
   }
 ]

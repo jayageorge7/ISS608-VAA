@@ -1,0 +1,16 @@
+{
+  "hash": "51f7521bbfce1019735ce5edb5fdeaae",
+  "result": {
+    "markdown": "---\ntitle: \"In-class_Ex02\"\nauthor: \"Jaya George\"\ndate: \"April 20,2024\"\ndate-modified: \"last-modified\"\nexecute: \n  eval: true\n  echo: true\n  warning: false\n  freeze: true\n---\n\n\n# *Loading R packages*\n\n\n::: {.cell}\n\n```{.r .cell-code}\npacman::p_load(tidyverse,ggrepel, ggdist, ggridges,colorspace,ggthemes) \n```\n:::\n\n\n## *Importing data*\n\n\n::: {.cell}\n\n```{.r .cell-code}\nexam_data <- read_csv(\"data/Exam_data.csv\",show_col_types = FALSE)\n```\n:::\n\n\n## Plot as a probability density curve\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(data=exam_data, \n       aes(x = ENGLISH))+ \n  geom_density(\n    color='#1696d2',\n    adjust=.65,\n      alpha= .6\n  )\n```\n\n::: {.cell-output-display}\n![](In-class_Ex02_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\n## *Alternative design*\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmedian_eng <- median(exam_data$ENGLISH)\nmean_eng <- mean(exam_data$ENGLISH)\nstd_eng <- sd(exam_data$ENGLISH)\n\nggplot(data=exam_data, \n       aes(x = ENGLISH))+ \n  geom_density(\n    color='#1696d2',\n    adjust=.65,\n      alpha= .6\n  )+\n  stat_function(\n    fun = dnorm,\n    args = list(mean = mean_eng,\n                sd=std_eng),\n    col=\"grey30\",\n    size =.8)+\n  geom_vline(\n    aes(xintercept = mean_eng),\n    colour=\"4d5887\",\n    linewidth=.6,\n    linetype=\"dashed\")+\n  annotate(geom=\"text\",\n           x=mean_eng-8,\n           y=0.04,\n           label=paste0(\"Mean ENGLISH: \",\n                        round((mean_eng),2)))\n```\n\n::: {.cell-output-display}\n![](In-class_Ex02_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "In-class_Ex02_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

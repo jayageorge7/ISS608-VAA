@@ -1,0 +1,72 @@
+---
+title: "In-class_Ex02"
+author: "Jaya George"
+date: "April 20,2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+# *Loading R packages*
+
+```{r}
+
+pacman::p_load(tidyverse,ggrepel, ggdist, ggridges,colorspace,ggthemes) 
+```
+
+## *Importing data*
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv",show_col_types = FALSE)
+```
+
+## Plot as a probability density curve
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x = ENGLISH))+ 
+  geom_density(
+    color='#1696d2',
+    adjust=.65,
+      alpha= .6
+  )
+```
+
+## *Alternative design*
+
+```{r}
+median_eng <- median(exam_data$ENGLISH)
+mean_eng <- mean(exam_data$ENGLISH)
+std_eng <- sd(exam_data$ENGLISH)
+
+ggplot(data=exam_data, 
+       aes(x = ENGLISH))+ 
+  geom_density(
+    color='#1696d2',
+    adjust=.65,
+      alpha= .6
+  )+
+  stat_function(
+    fun = dnorm,
+    args = list(mean = mean_eng,
+                sd=std_eng),
+    col="grey30",
+    size =.8)+
+  geom_vline(
+    aes(xintercept = mean_eng),
+    colour="4d5887",
+    linewidth=.6,
+    linetype="dashed")+
+  annotate(geom="text",
+           x=mean_eng-8,
+           y=0.04,
+           label=paste0("Mean ENGLISH: ",
+                        round((mean_eng),2)))
+    
+  
+    
+  
+```
