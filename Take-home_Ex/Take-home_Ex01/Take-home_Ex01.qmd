@@ -10,17 +10,52 @@ execute:
   freeze: true
 ---
 
+# *Creating data visualization beyond default*
+
+## Overview
+
+### Setting the scene
+
+### Our task
+
+## Getting started
+
+### Load packages
+
+We load the following R packages using the `pacman::p_load()` function:
+
+-   **tidyverse**: Core collection of R packages designed for data science
+
+-   **haven**: To read in data formats such as SAS and SPSS
+
+-   **ggrepel**: to provides geoms for **ggplot2** to repel overlapping text labels
+
+-   **ggthemes**: to use additional themes for **ggplot2**
+
+-   **patchwork**: to prepare composite figure created using **ggplot2**
+
+-   **ggridges**: to plot ridgeline plots
+
+-   **ggdist**: for visualizations of distributions and uncertainty
+
+-   **scales**: provides the internal scaling infrastructure used by **ggplot2**
+
 ```{r}
 library("pacman")
 ```
 
 ```{r}
-pacman::p_load(tidyverse)
+pacman::p_load(tidyverse, haven,
+               ggrepel, ggthemes,
+               ggridges, ggdist,
+               patchwork, scales)
 ```
 
 ```{r}
 library(readr)
 ```
+
+# *Import data*
 
 ```{r}
 res_data1 <- read_csv("data/ResidentialTransaction20240308160536.csv",show_col_types = FALSE)
@@ -32,18 +67,26 @@ res_data <- bind_rows(res_data1, res_data2, res_data3, res_data4, res_data5)
 
 ```
 
+### Data pre-processing
+
 ```{r}
 nrow(res_data)
 
 ```
 
+#### **Glimpse of data**
+
 ```{r}
 glimpse(res_data)
 ```
 
+#### **Check for duplicates**
+
 ```{r}
 res_data[duplicated(res_data),]
 ```
+
+#### **Filtering data for selected variables**
 
 ```{r}
 res_data_final = res_data %>% 
@@ -60,10 +103,103 @@ res_data_final = res_data %>%
          "Purchaser_Address_Indicator"="Purchaser Address Indicator")
 ```
 
+## **Handling missing values**
+
+```{r}
+sum(is.na(res_data_final$Property_Type))
+```
+
+```{r}
+sum(is.na(res_data_final$Area_sqft))
+```
+
+```{r}
+sum(is.na(res_data_final$Unit_Price_sqft))
+```
+
+```{r}
+sum(is.na(res_data_final$Sale_Date))
+```
+
+```{r}
+sum(is.na(res_data_final$Sale_Price))
+```
+
+```{r}
+sum(is.na(res_data_final$Postal_District))
+```
+
+```{r}
+sum(is.na(res_data_final$Sale_Type))
+```
+
+```{r}
+sum(is.na(res_data_final$Planning_Region))
+```
+
+```{r}
+sum(is.na(res_data_final$Planning_Area))
+```
+
+```{r}
+# Create the ridge plot
+SES_ridgeplot <-ggplot(res_data_final, aes(x = Unit_Price_sqft, y = Property_Type, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Tail probability", direction = -1) +
+  facet_wrap(~ Subject, scales = "free_x") + # Faceting by subject
+  labs(title = "Students with more advantageous socioeconomic status tend to perform better",
+       subtitle = "Density plots of performance stratified by socioeconomic status",
+       x = "Score") +
+  scale_x_continuous(limits = c(0, 1000)) + 
+  theme_minimal() +
+  theme(legend.position = "none", # Hides the legend
+        axis.title.x = element_blank(), # Hides the x-axis title
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), # Hides the x-axis text/numbers
+        axis.ticks.x = element_blank(), # Hides the x-axis ticks
+        plot.title = element_text(face = "bold", size = 12),
+        plot.subtitle = element_text(size = 8))
+
+SES_ridgeplot
+
+
+```
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(ggridges)
+
+# Assume you have a dataframe `df` with a numeric variable `value`
+# and a categorical variable `category` that you want to plot
+
+# Basic ridge plot
+ggplot(res_data_final, aes(x = Unit_Price_sqft, y = Property_Type, fill = Property_Type)) +
+  geom_density_ridges() +
+  theme_ridges() + # this is optional, for a better theme tailored for ridge plots
+  labs(title = 'Ridge Plot', x = 'Value', y = 'Category')
+
+```
+
 ```{r, fig.width=20, fig.height=10}
 # Create the box plot
 ggplot(res_data_final, aes(x = Property_Type, y = Unit_Price_sqft)) +
   geom_boxplot() +  facet_wrap(~ Planning_Region) +
+  labs(
+    title = "Price Distribution by Property Type (Q1 2024)",
+    x = "Property Type",
+    y = "Price"
+  ) +
+  scale_y_continuous(breaks = seq(0, max(res_data_final$Unit_Price_sqft), by = 500))+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x-axis labels
+
+
+```
+
+```{r, fig.width=15, fig.height=8}
+# Create the box plot
+ggplot(res_data_final, aes(x = Property_Type, y = Unit_Price_sqft)) +
+  geom_boxplot() +  facet_grid(~ Planning_Region) +
   labs(
     title = "Price Distribution by Property Type (Q1 2024)",
     x = "Property Type",
