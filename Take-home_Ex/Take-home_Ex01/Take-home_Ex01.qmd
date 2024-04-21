@@ -10,9 +10,13 @@ execute:
   freeze: true
 ---
 
-# *Creating data visualization beyond default*
-
 ## Overview
+
+::: panel-tabset
+## Plot
+
+## Code Chunk
+:::
 
 ### Setting the scene
 
@@ -21,24 +25,6 @@ execute:
 ## Getting started
 
 ### Load packages
-
-We load the following R packages using the `pacman::p_load()` function:
-
--   **tidyverse**: Core collection of R packages designed for data science
-
--   **haven**: To read in data formats such as SAS and SPSS
-
--   **ggrepel**: to provides geoms for **ggplot2** to repel overlapping text labels
-
--   **ggthemes**: to use additional themes for **ggplot2**
-
--   **patchwork**: to prepare composite figure created using **ggplot2**
-
--   **ggridges**: to plot ridgeline plots
-
--   **ggdist**: for visualizations of distributions and uncertainty
-
--   **scales**: provides the internal scaling infrastructure used by **ggplot2**
 
 ```{r}
 library("pacman")
@@ -141,8 +127,27 @@ sum(is.na(res_data_final$Planning_Region))
 sum(is.na(res_data_final$Planning_Area))
 ```
 
-```         
+::: panel-tabset
+
+## Plot
+
+```{r}
+#| echo: false
+# This chunk generates the plot
+ggplot(res_data_final, aes(x = Unit_Price_sqft, y = Property_Type, fill = Property_Type)) + 
+  geom_density_ridges() + 
+  theme_ridges() + 
+  labs(title = 'Ridge Plot', x = 'Value', y = 'Category') 
 ```
+
+## Code 
+```{r} 
+#| eval: false
+
+#abc
+```
+:::
+
 
 ```{r}
 # Load necessary libraries
@@ -160,8 +165,7 @@ ggplot(res_data_final, aes(x = Unit_Price_sqft, y = Property_Type, fill = Proper
 
 ```
 
-```{}
-```
+
 
 ```{r, fig.width=18, fig.height=5}
 # Create the box plot
@@ -178,9 +182,6 @@ ggplot(res_data_final, aes(x = Property_Type, y = Unit_Price_sqft)) +
 
 ```
 
-```{}
-```
-
 ```{r}
 
 transaction_counts <- res_data_final %>%
@@ -194,9 +195,6 @@ ggplot(transaction_counts, aes(x = Property_Type, y = n, fill = Sale_Type)) +
     y = "Number of Transactions"
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-```
-
-```{}
 ```
 
 ```{r}
@@ -252,7 +250,4 @@ ggplot(res_data_final, aes(x = Unit_Price_sqft,fill = Sale_Type)) +
 ggplot(data=res_data_final, 
        aes(x = Unit_Price_sqft,colour = Sale_Type)) +
   geom_density()           
-```
-
-```{}
 ```
