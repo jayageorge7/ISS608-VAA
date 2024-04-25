@@ -1,0 +1,659 @@
+---
+title: "Take-home Exercise 1"
+author: "Jaya George"
+date: "April 17,2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+## Overview
+
+### Setting the scene
+
+### Our task
+
+## Getting started
+
+### Load packages
+
+```{r}
+library("pacman")
+library("lubridate")
+library(readr)
+
+```
+
+```{r}
+pacman::p_load(tidyverse, haven,
+               ggrepel, ggthemes,
+               ggridges, ggdist,colorspace,ggdist,
+               patchwork, scales)
+```
+
+# *Import data*
+
+```{r}
+res_data1 <- read_csv("data/ResidentialTransaction20240308160536.csv",show_col_types = FALSE)
+res_data2 <- read_csv("data/ResidentialTransaction20240308160736.csv",show_col_types = FALSE)
+res_data3 <- read_csv("data/ResidentialTransaction20240308161009.csv",show_col_types = FALSE)
+res_data4 <- read_csv("data/ResidentialTransaction20240308161109.csv",show_col_types = FALSE)
+res_data5 <- read_csv("data/ResidentialTransaction20240414220633.csv",show_col_types = FALSE)
+res_data <- bind_rows(res_data1, res_data2, res_data3, res_data4, res_data5)
+
+```
+
+### Data pre-processing
+
+```{r}
+nrow(res_data)
+
+```
+
+#### **Glimpse of data**
+
+```{r}
+glimpse(res_data)
+```
+
+#### **Check for duplicates**
+
+```{r}
+res_data[duplicated(res_data),]
+```
+
+#### **Filtering data for selected variables**
+
+```{r}
+res_data_final = res_data %>% 
+  select("Property Type", "Area (SQFT)","Unit Price ($ PSF)","Sale Date","Transacted Price ($)","Postal District","Type of Sale","Planning Region","Planning Area","Purchaser Address Indicator") %>%
+  rename("Property_Type" = "Property Type",
+         "Area_sqft" = "Area (SQFT)",
+         "Unit_Price_sqft"="Unit Price ($ PSF)",
+         "Sale_Date"="Sale Date",
+         "Sale_Price"="Transacted Price ($)",
+         "Postal_District"="Postal District",
+         "Sale_Type"="Type of Sale",
+         "Planning_Region"="Planning Region",
+         "Planning_Area"="Planning Area",
+         "Purchaser_Address_Indicator"="Purchaser Address Indicator")
+```
+
+```{r}
+head(res_data_final$Sale_Date)
+```
+
+```{r}
+res_data_q1_2024 <- res_data_final %>%
+  mutate(Sale_Date = as.Date(Sale_Date, format = "%d %b %Y")) %>% 
+  filter(quarter(Sale_Date) == 1 & year(Sale_Date) == 2024) 
+
+```
+
+## **Handling missing values**
+
+```{r}
+for(column_name in names(res_data_q1_2024)) {
+  na_count <- sum(is.na(res_data_q1_2024[[column_name]]))
+
+  if (na_count > 0) {
+    message("Column '", column_name, "' has ", na_count, " NA values.")
+  }
+}
+```
+
+```{r}
+#View(res_data_q1_2024)
+```
+
+```{r}
+
+nrow(res_data_q1_2024)
+```
+
+```{r}
+#sum(is.na(res_data_q1_2024$Property_Type))
+```
+
+::: panel-tabset
+## Plot
+
+```{r}
+#| echo: false
+# This chunk generates the plot
+ggplot(res_data_q1_2024, aes(x = Unit_Price_sqft, y = Property_Type, fill = Property_Type)) + 
+  geom_density_ridges() + 
+  theme_ridges() + 
+  labs(title = 'Ridge Plot', x = 'Value', y = 'Category') 
+```
+
+## Code
+
+```{r}
+#| eval: false
+
+#abc
+```
+:::
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(ggridges)
+
+# Assume you have a dataframe `df` with a numeric variable `value`
+# and a categorical variable `category` that you want to plot
+
+# Basic ridge plot
+ggplot(res_data_q1_2024, aes(x = Unit_Price_sqft, y = Property_Type, fill = Property_Type)) +
+  geom_density_ridges() +
+  theme_ridges() + # this is optional, for a better theme tailored for ridge plots
+  labs(title = 'Ridge Plot', x = 'Value', y = 'Category')
+
+```
+
+```{r, fig.width=18, fig.height=10}
+# Create the box plot
+ggplot(res_data_q1_2024, aes(x = Property_Type, y = Unit_Price_sqft)) +
+  geom_boxplot() +  facet_grid(~ Planning_Region) +
+  labs(
+    title = "Price Distribution by Property Type (Q1 2024)",
+    x = "Property Type",
+    y = "Price"
+  ) +
+  scale_y_continuous(breaks = seq(0, max(res_data_q1_2024$Unit_Price_sqft), by = 500))+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x-axis labels
+
+
+```
+
+```{r}
+
+transaction_counts <- res_data_q1_2024 %>%
+  count(Property_Type, Sale_Type) 
+
+ggplot(transaction_counts, aes(x = Property_Type, y = n, fill = Sale_Type)) +
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+```{r}
+
+transaction_counts <- res_data_q1_2024 %>%
+  count(Planning_Region,Property_Type) 
+
+ggplot(transaction_counts, aes(x = Planning_Region, y = n, fill = Property_Type)) +
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+```{r, fig.width=12, fig.height=6}
+
+transaction_counts <- res_data_q1_2024 %>%
+  count(Planning_Region,Property_Type) 
+
+p1<- ggplot(transaction_counts, aes(x = Planning_Region, y = n, fill = Property_Type)) +
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+transaction_counts <- res_data_q1_2024 %>%
+  group_by(Planning_Area) %>%  # Group by planning area
+  count(Property_Type) %>%     # Count transactions per property type within each area
+  mutate(total_transactions = sum(n))  # Add a new column with total transactions per area
+
+
+
+p2<- ggplot(transaction_counts, aes(x = Planning_Area, y = n, fill = Property_Type)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  scale_x_discrete(breaks = reorder(transaction_counts$Planning_Area, -transaction_counts$total_transactions)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+(p1/p2)
+```
+
+```{r}
+# Remove duplicates from Planning_Area and reorder based on total_transactions
+transaction_counts <- transaction_counts %>%
+  distinct(Planning_Area, .keep_all = TRUE) %>%
+  mutate(Planning_Area = factor(Planning_Area, levels = reorder(Planning_Area, -total_transactions)))
+
+# Plot the stacked bar chart
+ggplot(transaction_counts, aes(x = Planning_Area, y = n, fill = Property_Type)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Transaction Count by Property Type and Sale Type (Q1 2024)",
+    x = "Property Type",
+    y = "Number of Transactions"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```{r}
+library(ggplot2)
+library(tidyverse)  # Might be needed 
+
+# Assuming your data is in a data frame called 'realis_data' 
+# Replace with your actual column names
+
+ggplot(res_data_final, aes(x = Unit_Price_sqft,fill = Sale_Type)) +
+  geom_histogram(bins = 30) +  # Adjust 'bins' for desired resolution
+  labs(
+    x = "Unit Size",
+    y = "Count",
+    title = "Distribution of Unit Size by Planning Region and Sale Type"
+  ) +
+  theme(strip.text = element_text(size = 10))  # Adjust strip text size, if needed
+
+```
+
+```{r}
+ggplot(data=res_data_final, 
+       aes(x = Unit_Price_sqft,colour = Sale_Type)) +
+  geom_density()           
+```
+
+```{r}
+ggplot(res_data_final, 
+       aes(x = Unit_Price_sqft, 
+           y = Planning_Region,
+           fill = stat(x))) +
+  geom_density_ridges_gradient(
+    scale = 3,
+    rel_min_height = 0.01) +
+  scale_fill_viridis_c(name = "Temp. [F]",
+                       option = "C") +
+  scale_x_continuous(
+    name = "Unit Price in sqft",
+    expand = c(0, 0)
+  ) +
+  scale_y_discrete(name = NULL, expand = expansion(add = c(0.2, 2.6))) +
+  theme_ridges()
+```
+
+```         
+```
+
+```{r, fig.width=12, fig.height=6}
+ggplot(res_data_final, 
+       aes(x = Unit_Price_sqft, 
+           y = Property_Type)) +
+  stat_halfeye(adjust = 0.5,
+               justification = -0.2,
+               .width = 0,
+               point_colour = NA) +
+  geom_boxplot(width = .20,
+               outlier.shape = NA) +
+  stat_dots(side = "left", 
+            justification = 1.2, 
+            binwidth = .5,
+            dotsize = 1.5) +
+  coord_flip() +
+theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+```{r, fig.width=8, fig.height=6}
+# Create the ridge plot
+SES_ridgeplot <- ggplot(res_data_final, aes(x = Area_sqft, y = Property_Type, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Tail probability", direction = -1) +
+  facet_wrap(~ Planning_Region, scales = "free_x") + # Faceting by subject
+  labs(title = "Students with more advantageous socioeconomic status tend to perform better",
+       subtitle = "Density plots of performance stratified by socioeconomic status",
+       x = "Score") +
+  scale_x_continuous(limits = c(0, 8000)) + 
+  theme_minimal() +
+  theme(legend.position = "none", # Hides the legend,
+        plot.title = element_text(face = "bold", size = 12),
+        plot.subtitle = element_text(size = 8))
+
+
+SES_ridgeplot
+```
+
+```{r, fig.width=8, fig.height=6}
+# Create the ridge plot
+SES_ridgeplot <- ggplot(res_data_final, aes(x = Area_sqft, y = Property_Type, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Tail probability", direction = -1) +
+  #facet_wrap(~ Planning_Region, scales = "free_x") + # Faceting by subject
+  labs(title = "Students with more advantageous socioeconomic status tend to perform better",
+       subtitle = "Density plots of performance stratified by socioeconomic status",
+       x = "Score") +
+  scale_x_continuous(limits = c(0, 8000)) + 
+  theme_minimal() +
+  theme(legend.position = "none", # Hides the legend,
+        plot.title = element_text(face = "bold", size = 12),
+        plot.subtitle = element_text(size = 8))
+
+
+SES_ridgeplot
+```
+
+```{r, fig.width=8, fig.height=6}
+# Create the ridge plot
+SES_ridgeplot <- ggplot(res_data_final, aes(x = Unit_Price_sqft, y = Property_Type, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Tail probability", direction = -1) +
+  #facet_wrap(~ Planning_Region, scales = "free_x") + # Faceting by subject
+  labs(title = "Students with more advantageous socioeconomic status tend to perform better",
+       subtitle = "Density plots of performance stratified by socioeconomic status",
+       x = "Score") +
+  scale_x_continuous(limits = c(0, 8000)) + 
+  theme_minimal() +
+  theme(legend.position = "none", # Hides the legend,
+        plot.title = element_text(face = "bold", size = 12),
+        plot.subtitle = element_text(size = 8))
+
+
+SES_ridgeplot
+```
+
+```{r, fig.width=6, fig.height=10}
+# Create the ridge plot
+SES_ridgeplot <- ggplot(res_data_q1_2024, aes(x = Unit_Price_sqft, y = Planning_Area, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Tail probability", direction = -1) +
+  #facet_wrap(~ Planning_Area, scales = "free_x") + # Faceting by subject
+  labs(title = "Students with more advantageous socioeconomic status tend to perform better",
+       subtitle = "Density plots of performance stratified by socioeconomic status",
+       x = "Score") +
+  #scale_x_continuous(limits = c(0, 8000)) + 
+  scale_x_continuous(breaks = seq(0, max(res_data_final$Unit_Price_sqft), by = 500))+
+  theme_minimal() +
+  theme(legend.position = "none", # Hides the legend,
+        plot.title = element_text(face = "bold", size = 12),
+        plot.subtitle = element_text(size = 8))
+
+
+SES_ridgeplot
+```
+
+```{r}
+ggplot(res_data_q1_2024, 
+       aes(x = Unit_Price_sqft, 
+           y = Property_Type,
+           fill = factor(after_stat(quantile)))) +
+  stat_density_ridges(
+    geom = "density_ridges_gradient",
+    calc_ecdf = TRUE, 
+    quantiles = 4,
+    quantile_lines = TRUE) +
+  scale_fill_viridis_d(alpha = 0.8) +
+  ggtitle(label = "More Books at Home Generally Correspond\nto Higher Reading Scores",
+          subtitle = "Distribution of Reading Scores vis-a-vis Number of Books at Home") +
+  xlab("Score") + ylab("No.of\nBooks") +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.y = element_text(angle=360, 
+                                    vjust=.5, hjust=1), 
+        legend.position = "none")
+```
+
+```{r}
+ggplot(res_data_q1_2024, 
+       aes(x = Unit_Price_sqft, 
+           y = Sale_Type,
+           fill = factor(after_stat(quantile)))) +
+  stat_density_ridges(
+    geom = "density_ridges_gradient",
+    calc_ecdf = TRUE, 
+    quantiles = 4,
+    quantile_lines = TRUE) +
+  scale_fill_viridis_d(alpha = 0.8) +
+  ggtitle(label = "More Books at Home Generally Correspond\nto Higher Reading Scores",
+          subtitle = "Distribution of Reading Scores vis-a-vis Number of Books at Home") +
+  xlab("Score") + ylab("No.of\nBooks") +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.y = element_text(angle=360, 
+                                    vjust=.5, hjust=1), 
+        legend.position = "none")
+```
+
+```{r, fig.width=6, fig.height=5}
+ggplot(res_data_q1_2024, 
+       aes(x = Unit_Price_sqft, 
+           y = Sale_Type)) +
+  stat_halfeye(adjust = 0.5,
+               justification = -0.15,
+               .width = 0,
+               point_colour = NA,
+               scale= 0.55) +
+  geom_boxplot(aes(fill = Sale_Type), width = .15, outlier.shape = NA) +
+   stat_summary(fun.y = mean, 
+               geom = "point", 
+               size = 3, 
+               color = "blue",  # Change color for better visibility
+               position = position_dodge(width = 0.2)) +  # Dodge points to avoid overlap
+ # stat_dots(side = "left", justification = 1.2, binwidth = 3, dotsize = 5, position = position_jitter(width = 0.1))+
+ stat_dots(side = "left",justification = 1.2, binwidth = 3,dotsize = 5) +
+ # coord_flip() +
+  ggtitle(label = "Public Schools Have Both Best and Worst Performing\n Students in Mathematics",
+          subtitle= "Distribution of Mathematics Scores by School Type") +
+  xlab("School\nType") + ylab("Score") +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.y = element_text(angle=360, 
+                                    vjust=.5, hjust=1))
+```
+
+```{r}
+
+# Create the ridge plot
+PV_ridgeplot <- ggplot(res_data_q1_2024, aes(x = Unit_Price_sqft, y = Sale_Type, fill = Sale_Type)) +
+  geom_density_ridges(alpha = 0.5, quantile_lines=TRUE, quantile_fun = function(y, ...) quantile(y, probs = 0.5, na.rm = TRUE)) +
+  ylab("") +
+  xlab("PV1") +
+  scale_x_continuous(limits = c(0,1000)) + 
+  labs(title = "Distributions of performance of students in Singapore for Science, Reading and Math") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") +
+  theme(legend.position = "none",  # Hides the legend
+        axis.title.x = element_blank(),  # Hides the x-axis title
+        axis.text.x = element_blank(),  # Hides the x-axis text/numbers
+        axis.ticks.x = element_blank(), # Hides the x-axis ticks
+        plot.title = element_text(face = "bold", size = 12), plot.subtitle = element_text(size = 8))  
+
+# Calculate mean, median, and whisker positions for each subject. Retaining code although not all are used.
+stats <- res_data_q1_2024 %>%
+  summarise(
+    Mean_MATH = mean(Unit_Price_sqft, na.rm = TRUE),
+    Median_MATH = median(Unit_Price_sqft, na.rm = TRUE),
+    WhiskerLow_MATH = max(min(Unit_Price_sqft, na.rm = TRUE), quantile(Unit_Price_sqft, 0.25, na.rm = TRUE) - 1.5 * IQR(Unit_Price_sqft, na.rm = TRUE)),
+    WhiskerHigh_MATH = min(max(Unit_Price_sqft, na.rm = TRUE), quantile(Unit_Price_sqft, 0.75, na.rm = TRUE) + 1.5 * IQR(Unit_Price_sqft, na.rm = TRUE)),
+
+    Mean_unit_price_sqft = mean(Unit_Price_sqft, na.rm = TRUE),
+   
+    Mean_SCIE = mean(PV1SCIE, na.rm = TRUE)
+  )
+
+# Create boxplot
+PV_boxplot <- ggplot(data = stu_qqq_SG_filtered) +
+  geom_boxplot(aes(y = PV1READ, x = "READING")) +
+  geom_boxplot(aes(y = PV1MATH, x = "MATH")) +
+  geom_boxplot(aes(y = PV1SCIE, x = "SCIENCE")) +
+  geom_text(data = stats, aes(y = Mean_READ, x = "READING", label = round(Median_READ, 1)), color = "red", hjust = 0.9) +
+  geom_text(data = stats, aes(y = Mean_MATH, x = "MATH", label = round(Median_MATH, 1)), color = "red", hjust = 0.9) +
+  geom_text(data = stats, aes(y = Mean_SCIE, x = "SCIENCE", label = round(Median_SCIE, 1)), color = "red", hjust = 0.9) +
+  ylab("Plausible Value 1") +
+  xlab("") +
+  scale_y_continuous(limits = c(0,1000))+ 
+  coord_flip() +
+  theme(axis.title.y = element_text(size = 8)) 
+
+PV_ridgeplot / PV_boxplot
+```
+
+```{r}
+library(ggplot2)
+
+mean_values <- res_data_q1_2024 %>%  # Replace "realis_data" with your data frame name
+    group_by(Sale_Type) %>%
+    summarise(mean_score = mean(Unit_Price_sqft)) 
+
+ridgeplot<-ggplot(res_data_q1_2024,
+  aes(x = Unit_Price_sqft,  # Map Unit_Price_sqft to x-axis
+     y = Sale_Type,        # Map Sale_Type to y-axis
+     fill = Sale_Type)) +  # Map Sale_Type to fill color
+  geom_density_ridges(alpha = 0.5, scale = 1) +  # Adjust alpha for transparency, scale controls overlap
+  
+boxplot<-geom_boxplot(aes(group = Sale_Type),  # Group boxplots by Sale_Type
+              width = 0.2,
+              notch = FALSE,
+              color = "red") +
+  # Add annotations for mean values within boxplots
+  geom_text(data = mean_values,aes(x = mean_values$mean_score+0.1,  # X position based on sale type
+            y = 'mean_values$mean_score + 0.1',  # Adjust position relative to boxplots
+            label = round(mean_values$mean_score, 2),  # Display rounded mean value
+            color = "blue"),  # Text color
+       hjust = 0.5,  # Center text horizontally within boxplot
+       vjust = 1,  # Align text at top of boxplot
+       inherit.aes = FALSE) +  # Don't inherit aesthetics from other layers
+  labs(x = "Score",
+       y = "Sale Type",
+       title = "Distribution of Scores by Sale Type",
+       subtitle = "Ridge plot with medians, boxplots and means") +
+  theme_minimal() +
+  scale_y_discrete(expand = c(0.1, 0.1))  # Adjust y-axis for spacing
+
+ridgeplot / boxplot
+
+
+```
+
+```         
+```
+
+```{r, fig.width=6, fig.height=4}
+
+mean_values <- res_data_q1_2024 %>%  # Replace "realis_data" with your data frame name
+    group_by(Property_Type) %>%
+    summarise(mean_score = median(Unit_Price_sqft)) 
+
+
+# Create the ridge plot
+PV_ridgeplot <- ggplot((res_data_q1_2024), aes(x = Unit_Price_sqft, y = Property_Type, fill = Property_Type)) +
+  geom_density_ridges(alpha = 0.5, quantile_lines=TRUE, quantile_fun = function(y, ...) quantile(y, probs = 0.5, na.rm = TRUE)) +
+  ylab("") +
+  xlab("PV1") +
+ scale_x_continuous(breaks = seq(0, max(res_data_q1_2024$Unit_Price_sqft), by = 500))+ 
+  labs(title = "Distributions of performance of students in Singapore for Science, Reading and Math") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") +
+  theme(legend.position = "none",  # Hides the legend
+        axis.title.x = element_blank(),  # Hides the x-axis title
+       # axis.text.x = element_blank(),  # Hides the x-axis text/numbers
+      #  axis.ticks.x = element_blank(), # Hides the x-axis ticks
+        plot.title = element_text(face = "bold", size = 12), plot.subtitle = element_text(size = 8))  
+
+# Create boxplot
+PV_boxplot <- ggplot(data = res_data_q1_2024) +
+  geom_boxplot(aes(group = Property_Type,y = Unit_Price_sqft, x = Property_Type)) +
+  geom_text(data = mean_values, aes(group = Property_Type,y = mean_score+1, x = Property_Type, label = round(mean_score, 0)), color = "red", hjust = 0.9,size = 3)+
+  ylab("Unit_Price_sqft") +
+  xlab("") +
+  #scale_y_continuous(breaks = seq(0, max(res_data_q1_2024$Unit_Price_sqft), by = 500))+ 
+ # scale_x_continuous(breaks = seq(0, max(res_data_q1_2024$Unit_Price_sqft), by = 500))+
+  coord_flip() +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") 
+
+PV_ridgeplot / PV_boxplot
+
+```
+
+```{r, fig.width=6, fig.height=4}
+ggplot(res_data_q1_2024, 
+       aes(x = Unit_Price_sqft, 
+           y = Sale_Type)) +
+  stat_halfeye(adjust = 0.5,
+               justification = -0.2,
+               .width = 0,
+               point_colour = NA) +
+  geom_boxplot(width = .20,
+               outlier.shape = NA) +
+  stat_dots(side = "left", 
+            justification = 1.2, 
+            binwidth = .5,
+            dotsize = 1.5) +
+  #coord_flip() +
+  theme_economist()
+```
+
+```{r}
+ggplot(res_data_q1_2024,
+       aes(x = Unit_Price_sqft, 
+           y = Property_Type, 
+           fill = factor(stat(quantile))
+           )) +
+  stat_density_ridges(
+    geom = "density_ridges_gradient",
+    calc_ecdf = TRUE, 
+    quantiles = c(0.025, 0.975)
+    ) +
+  scale_fill_manual(
+    name = "Probability",
+    values = c("#FF0000A0", "#A0A0A0A0", "#0000FFA0"),
+    labels = c("(0, 0.025]", "(0.025, 0.975]", "(0.975, 1]")
+  ) +
+  theme_ridges()
+```
+
+```{r}
+ggplot(res_data_q1_2024,
+       aes(x = Unit_Price_sqft, 
+           y = Planning_Area, 
+           fill = factor(stat(quantile))
+           )) +
+  stat_density_ridges(
+    geom = "density_ridges_gradient",
+    calc_ecdf = TRUE, 
+    quantiles = c(0.025, 0.975)
+    ) +
+  scale_fill_manual(
+    name = "Probability",
+    values = c("#FF0000A0", "#A0A0A0A0", "#0000FFA0"),
+    labels = c("(0, 0.025]", "(0.025, 0.975]", "(0.975, 1]")
+  ) +
+  theme_ridges()
+```
+
+```{r}
+
+ggplot(res_data_q1_2024,
+       aes(x = Unit_Price_sqft, 
+           y = Planning_Region, 
+           fill = factor(stat(quantile))
+           )) +
+  stat_density_ridges(
+    geom = "density_ridges_gradient",
+    calc_ecdf = TRUE, 
+    quantiles = c(0.025, 0.975)
+    ) +
+  scale_fill_manual(
+    name = "Probability",
+    values = c("#FF0000A0", "#A0A0A0A0", "#0000FFA0"),
+    labels = c("(0, 0.025]", "(0.025, 0.975]", "(0.975, 1]")
+  ) +
+  theme_ridges()
+```
