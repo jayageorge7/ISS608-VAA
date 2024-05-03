@@ -1,0 +1,179 @@
+---
+title: "Take-home Exercise 2"
+author: "Jaya George"
+date: "April 30,2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+```{r}
+pacman::p_load(tidyverse,ggplot2,readr,dplyr,lubridate,stringr)
+
+```
+
+```{r}
+realis_1 <- read_csv("data/ResidentialTransaction20240308160536.csv")
+realis_2 <- read_csv("data/ResidentialTransaction20240308160736.csv")
+realis_3 <- read_csv("data/ResidentialTransaction20240308161009.csv")
+realis_4 <- read_csv("data/ResidentialTransaction20240308161109.csv")
+realis_5 <- read_csv("data/ResidentialTransaction20240414220633.csv")
+realis <- bind_rows(realis_1, realis_2, realis_3, realis_4, realis_5)
+
+```
+
+```{r}
+realis$`Sale Date` <- as.Date(realis$`Sale Date`, format = "%d %b %Y")
+realis$`Nett Price($)` <- as.numeric(gsub("[^0-9.]", "", realis$`Nett Price($)`))
+```
+
+```{r}
+realis2024Q1 <- realis %>%
+  filter(year(`Sale Date`) == 2024 & quarter(`Sale Date`) == 1)
+```
+
+```{r}
+Number_of_Units_by_Property_Type <- realis2024Q1 %>%
+  group_by(`Property Type`) %>%
+  summarise(`Total Number of Units` = sum(`Number of Units`))
+```
+
+```{r}
+Number_of_Units_by_Property_Type <- Number_of_Units_by_Property_Type %>%
+  arrange(desc(`Total Number of Units`)) %>%
+  mutate(`Property Type` = factor(`Property Type`, levels = `Property Type`))
+```
+
+```{r}
+#Determine the address unit level.
+realis2024Q1 <- realis2024Q1 %>%
+  mutate("Floor Level" = if_else(str_detect(Address, '#'),
+                                   str_trim(str_extract(str_split(Address, "#", simplify = TRUE)[, 2], "^[^\\-]*")),
+                                   "N.A."))
+
+#Determine the address unit level category (Low, middle or high).
+realis2024Q1 <- realis2024Q1 %>%
+  mutate(`Floor Level Category` = case_when(
+    `Property Type` %in% c("Terrace House", "Semi-Detached House", "Detached House") ~ "N.A.",
+    `Floor Level` == "N.A." ~ "Low",
+    as.integer(`Floor Level`) <= 5 ~ "Low",
+    as.integer(`Floor Level`) <= 10 ~ "Middle",
+    TRUE ~ "High"
+  ))
+
+```
+
+```{r}
+# Reorder levels of 'Property Type' alphabetically
+realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`, levels = c("Apartment","Condominium","Terrace House", "Semi-Detached House","Detached House","Executive Condominium"))
+
+# Reorder levels of 'Floor Level Category' by "High", "Middle", "Low"
+realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category`, levels = c("High", "Middle", "Low"))
+
+# Create the boxplot using ggplot2
+ggplot(realis2024Q1, aes(x = `Property Type`, y = `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("N.A." = "gray", "Low" = "blue1", "Middle" ="green", "High" = "red")) +
+  labs(x = "Property Type", y = "Unit Price ($ PSM)", fill = "Floor Level Category") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r  fig.width=15, fig.height=12}
+# Ensure the 'realis2024Q1' data frame is loaded and appropriate libraries are available
+library(ggplot2)
+library(scales)
+
+# Reorder the levels of 'Property Type' alphabetically
+realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`,
+                                       levels = c("Apartment", "Condominium", "Executive Condominium","Terrace House", "Semi-Detached House", "Detached House"))
+
+# Reorder levels of 'Floor Level Category' in a specified order
+realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category`,
+                                              levels = c("Low", "Middle","High" ))
+
+# Create the boxplot using ggplot2
+ggplot(realis2024Q1, aes(y = `Property Type`, x= `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
+  geom_boxplot(position = position_dodge(width = 0.90)) +
+  scale_fill_manual(values = c("High" = "lightgreen", "Middle" ="lightblue", "Low" = "yellow", "N.A." = "gray")) +
+  labs(y = "Property Type", x = "Unit Price ($ PSM)", fill = "Floor Level Category") +
+  #theme_minimal() +
+  scale_y_discrete(labels = label_wrap_gen(width = 10)) +
+theme_minimal() +
+  theme(
+    axis.text.x = element_text(size = 20,angle = 0, hjust = 1),  # Customize x-axis text size and color
+    axis.text.y = element_text(size = 20),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 20),
+    axis.title.x = element_text(face = "bold", size = 20),
+    axis.title.y = element_text(face = "bold", size = 20),
+    legend.position = "top",
+    legend.box = "horizontal",  # Aligns legend items horizontally
+        legend.title = element_text(size = 20, face = "bold"), # Styles for legend title
+        legend.text = element_text(size = 20)) # Styles for legend text
+    panel.grid.minor = element_blank(),  # Remove minor grid lines for a cleaner look
+    panel.background = element_rect(fill = "white", colour = "gray"),
+    plot.margin = unit(c(1, 1, 1, 1), "cm")  # Set uniform plot margins
+  )
+
+
+```
+
+```{r  fig.width=15, fig.height=8}
+# Ensure the 'realis2024Q1' data frame is loaded and appropriate libraries are available
+library(ggplot2)
+
+# Reorder the levels of 'Property Type' alphabetically
+realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`,
+                                       levels = c("Apartment", "Condominium", "Executive Condominium","Terrace House", "Semi-Detached House", "Detached House"))
+
+# Reorder levels of 'Floor Level Category' in a specified order
+realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category`,
+                                              levels = c("High", "Middle", "Low"))
+
+# Create the boxplot using ggplot2
+ggplot(realis2024Q1, aes(y = `Property Type`, x = `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("High" = "lightgreen", "Middle" ="lightblue", "Low" = "yellow", "N.A." = "gray")) +
+  labs(x = "Property Type", y = "Unit Price ($ PSM)", fill = "Floor Level Category") +
+  #theme_minimal() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
+        legend.position = "bottom", # Puts legend below the plot
+        legend.box = "horizontal",  # Aligns legend items horizontally
+        legend.title = element_text(size = 12, face = "bold"), # Styles for legend title
+        legend.text = element_text(size = 12)) # Styles for legend text
+   # Rotate x-axis labels for better visibility
+
+```
+
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+
+# Improved color palette for accessibility
+colors <- brewer.pal(4, "Set2")
+
+ggplot(realis2024Q1, aes(x = `Property Type`, y = `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
+  geom_boxplot(outlier.shape = NA) +  # Hide outliers for clarity
+  scale_fill_manual(values = setNames(colors, c("High", "Middle", "Low", "N.A."))) +
+  labs(x = "Property Type", y = "Unit Price ($ PSM)", fill = "Floor Level Category") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        legend.title.align = 0.5) +
+  scale_y_log10()  # Logarithmic scale for better visualization
+
+```
+
+```{r}
+ggplot(realis2024Q1, aes(x = `Property Type`, y = `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
+  geom_boxplot(outlier.shape = NA, position = position_dodge(width = 0.75)) +
+  scale_fill_manual(values = setNames(colors, c("High", "Middle", "Low", "N.A."))) +
+  labs(x = "Property Type", y = "Unit Price ($ PSM)", fill = "Floor Level Category") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        legend.title.align = 0.5) +
+  scale_y_log10()
+
+```
