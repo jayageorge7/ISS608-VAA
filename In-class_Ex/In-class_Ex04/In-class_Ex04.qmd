@@ -1,0 +1,179 @@
+---
+title: "In-class Exercise 4"
+author: "Jaya George"
+date: "May 4,2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+```{r}
+pacman::p_load(tidyverse,ggstatsplot)
+```
+
+```{r}
+exam <- read_csv("data/Exam_data.csv")
+```
+
+**Parametric**
+
+```{r}
+
+set.seed(1234)
+
+gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "parametric",
+  test.value = 60,
+  bin.args = list(color="black",
+                  fill="grey50",
+                  alpha=0.7),
+  normal.curve=FALSE,
+  normal.curve.args=list(linewidth=2),
+  xlab = "English scores"
+)
+```
+
+**Non-Parametric:**
+
+Median is used here instead of mean.
+
+```{r}
+
+set.seed(1234)
+
+gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "np",
+  test.value = 60,
+  bin.args = list(color="black",
+                  fill="grey50",
+                  alpha=0.7),
+  normal.curve=FALSE,
+  normal.curve.args=list(linewidth=2),
+  xlab = "English scores"
+)
+```
+
+**Extracting out the stat details**
+
+```{r}
+set.seed(1234)
+
+p<-gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "np",
+  test.value = 60,
+  bin.args = list(color="black",
+                  fill="grey50",
+                  alpha=0.7),
+  normal.curve=FALSE,
+  normal.curve.args=list(linewidth=2),
+  xlab = "English scores"
+)
+```
+
+```{r}
+extract_stats(p)
+```
+
+**Robust:**
+
+```{r}
+set.seed(1234)
+
+gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "robust",
+  test.value = 60,
+  bin.args = list(color="black",
+                  fill="grey50",
+                  alpha=0.7),
+  normal.curve=FALSE,
+  normal.curve.args=list(linewidth=2),
+  xlab = "English scores"
+)
+```
+
+**Bayes:**
+
+```{r}
+set.seed(1234)
+
+gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "bayes",
+  test.value = 60,
+  bin.args = list(color="black",
+                  fill="grey50",
+                  alpha=0.7),
+  normal.curve=FALSE,
+  normal.curve.args=list(linewidth=2),
+  xlab = "English scores"
+)
+```
+
+**Plot against normal distribution:**
+
+```{r}
+
+set.seed(1234)
+
+gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "bayes",
+  test.value = 60,
+  bin.args = list(color="black",
+                  fill="grey50",
+                  alpha=0.7),
+  normal.curve=TRUE,
+  normal.curve.args=list(linewidth=0.5),
+  xlab = "English scores"
+)
+```
+
+```{r}
+ggdotplotstats(
+  data = exam,
+  x = ENGLISH,
+  y = CLASS,
+)
+```
+
+```{r}
+
+exam_long<-exam %>%
+  pivot_longer(
+    cols=ENGLISH:SCIENCE,
+    names_to="SUBJECT",
+    values_to="SCORES") %>%
+  filter(CLASS=="3A")
+  
+  
+ggwithinstats(
+  data = filter(exam_long,
+                SUBJECT %in%
+                  c("MATHS","SCIENCE")),
+  x = SUBJECT,
+  y = SCORES,
+  type="p"
+)
+```
+
+```{r}
+ggscatterstats(data = exam,
+  x = MATHS,
+  y = ENGLISH,
+  marginal = TRUE,
+  label.var=ID,
+  label.expression=ENGLISH>90 & MATHS >90,)
+```
