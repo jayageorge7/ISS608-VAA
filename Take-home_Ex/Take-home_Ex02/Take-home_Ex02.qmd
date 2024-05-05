@@ -135,7 +135,7 @@ ggplot(realis2024Q1, aes(x = `Property Type`, y = `Unit Price ($ PSM)`, fill = `
 ```
 :::
 
-This box plot helps to understand the variability of prices among the different property types. An interesting insight about the price patterns among different floor categeries also has been derived out.
+This box plot helps to understand the variability of prices among the different property types. An interesting insight about the price patterns among different floor categories also has been derived out.
 
 ## **4 Critique**
 
@@ -150,7 +150,7 @@ The original design is shown below. I have highlighted some of the elements whic
 ### 4.2.1 Clarity
 
 1.  The boxes are very compressed making it difficult to understand the position of medians
-2.  The box sizes are misleading, when we see boxes of varying sizes we would expect the box sizes to reflect the number of data points in that property type. In this case,from the box plot, we would expect Terraced house,semi-detatched house and detatched house to have highest numbers,but from data it is clear that it is not the case.
+2.  The box sizes are misleading. When we see boxes of varying sizes we would expect the box sizes to reflect the number of data points in that property type. In this case, from the box plot, we would expect Terraced house,Semi-detached house and Detached house to have highest numbers as those seem to have the largest boxes. But by looking at data it is clear that it is not the case as these property types have less number of data points.
 
 ### 4.2.2 Aesthetics
 
@@ -174,9 +174,13 @@ The original design is shown below. I have highlighted some of the elements whic
 
 3.  Changed the order of Floor category types to appear in the order of low,medium and high.
 
-4.  Tried using varwidth=TRUE, for the box plots to reflect the actual count of data points,but this didnt look visually appealing as some property types like Terraced house,semi-detatched house and detatched house has very less data points resulting in extremely narrow boxes making it difficult to see the median value.
+4.  Tried using varwidth=TRUE, for the box plots to reflect the actual count of data points,but this didnt look visually appealing as some property types like Terraced house,semi-detatched house and detatched house has very less data points resulting in extremely narrow boxes making it difficult to see the median value. (See Figure below)
 
-    Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for a property type and Terraced house,semi-detatched house and detatched house to have a fixed width, which again looked odd and not representative of the actual data.
+    ![](images/clipboard-3020957854.png){width="326"}
+
+    Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for a property type and Terraced house,semi-detached house and detached house to have a fixed width, which again looked odd and not representative of the actual data. (See Figure below)
+
+    ![](images/clipboard-3600425131.png){width="317"}
 
     Finally, used position_dodge2(preserve = "single") so that all boxes including the boxes corresponding to the different floor categories are of same size. This removed the distraction away from different sized box plots which are not representative of the data.
 
@@ -212,9 +216,6 @@ realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category
 # Create the boxplot using ggplot2
 ggplot(realis2024Q1, aes(y = `Property Type`, x= `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
   geom_boxplot(position = position_dodge2(preserve = "single")
-    #varwidth=TRUE,
-    #width = 0.5,
-   # position = position_dodge(width = 0.15)
   ) +
   scale_fill_manual(values = c("High" = "lightgreen", "Middle" ="lightblue", "Low" = "yellow", "N.A." = "gray")) +
   labs(title = " Property Types: Price comparison", hjust = 0.8,
@@ -260,9 +261,6 @@ realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category
 # Create the boxplot using ggplot2
 ggplot(realis2024Q1, aes(y = `Property Type`, x= `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
   geom_boxplot(position = position_dodge2(preserve = "single")
-    #varwidth=TRUE,
-    #width = 0.5,
-   # position = position_dodge(width = 0.15)
   ) +
   scale_fill_manual(values = c("High" = "lightgreen", "Middle" ="lightblue", "Low" = "yellow", "N.A." = "gray")) +
   labs(title = " Property Types: Price comparison", hjust = 0.8,

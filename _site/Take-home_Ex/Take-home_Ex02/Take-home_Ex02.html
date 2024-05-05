@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This box plot helps to understand the variability of prices among the different property types. An interesting insight about the price patterns among different floor categeries also has been derived out.</p>
+<p>This box plot helps to understand the variability of prices among the different property types. An interesting insight about the price patterns among different floor categories also has been derived out.</p>
 <section id="critique" class="level2">
 <h2 class="anchored" data-anchor-id="critique"><strong>4 Critique</strong></h2>
 </section>
@@ -386,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="clarity">4.2.1 Clarity</h3>
 <ol type="1">
 <li>The boxes are very compressed making it difficult to understand the position of medians</li>
-<li>The box sizes are misleading, when we see boxes of varying sizes we would expect the box sizes to reflect the number of data points in that property type. In this case,from the box plot, we would expect Terraced house,semi-detatched house and detatched house to have highest numbers,but from data it is clear that it is not the case.</li>
+<li>The box sizes are misleading. When we see boxes of varying sizes we would expect the box sizes to reflect the number of data points in that property type. In this case, from the box plot, we would expect Terraced house,Semi-detached house and Detached house to have highest numbers as those seem to have the largest boxes. But by looking at data it is clear that it is not the case as these property types have less number of data points.</li>
 </ol>
 </section>
 <section id="aesthetics" class="level3">
@@ -411,8 +411,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This will also help to stretch out the boxes further, thus making the spread and medians more visible and distinguishable.</p></li>
 <li><p>Changed the order of the Property Types, so that the Property types with different floor categories appear together.</p></li>
 <li><p>Changed the order of Floor category types to appear in the order of low,medium and high.</p></li>
-<li><p>Tried using varwidth=TRUE, for the box plots to reflect the actual count of data points,but this didnt look visually appealing as some property types like Terraced house,semi-detatched house and detatched house has very less data points resulting in extremely narrow boxes making it difficult to see the median value.</p>
-<p>Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for a property type and Terraced house,semi-detatched house and detatched house to have a fixed width, which again looked odd and not representative of the actual data.</p>
+<li><p>Tried using varwidth=TRUE, for the box plots to reflect the actual count of data points,but this didnt look visually appealing as some property types like Terraced house,semi-detatched house and detatched house has very less data points resulting in extremely narrow boxes making it difficult to see the median value. (See Figure below)</p>
+<p><img src="images/clipboard-3020957854.png" class="img-fluid" width="326"></p>
+<p>Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for a property type and Terraced house,semi-detached house and detached house to have a fixed width, which again looked odd and not representative of the actual data. (See Figure below)</p>
+<p><img src="images/clipboard-3600425131.png" class="img-fluid" width="317"></p>
 <p>Finally, used position_dodge2(preserve = “single”) so that all boxes including the boxes corresponding to the different floor categories are of same size. This removed the distraction away from different sized box plots which are not representative of the data.</p></li>
 </ol>
 </section>
@@ -457,31 +459,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the boxplot using ggplot2</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(realis2024Q1, <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>, <span class="at">x=</span> <span class="st">`</span><span class="at">Unit Price ($ PSM)</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Floor Level Category</span><span class="st">`</span>)) <span class="sc">+</span></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">preserve =</span> <span class="st">"single"</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#varwidth=TRUE,</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#width = 0.5,</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>   <span class="co"># position = position_dodge(width = 0.15)</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"High"</span> <span class="ot">=</span> <span class="st">"lightgreen"</span>, <span class="st">"Middle"</span> <span class="ot">=</span><span class="st">"lightblue"</span>, <span class="st">"Low"</span> <span class="ot">=</span> <span class="st">"yellow"</span>, <span class="st">"N.A."</span> <span class="ot">=</span> <span class="st">"gray"</span>)) <span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">" Property Types: Price comparison"</span>, <span class="at">hjust =</span> <span class="fl">0.8</span>,</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Categorized by Floor Level"</span>,</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Property Type"</span>,</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Unit Price ($ PSM)"</span>,</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Floor Level Category"</span>) <span class="sc">+</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="fu">label_wrap_gen</span>(<span class="at">width =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box =</span> <span class="st">"horizontal"</span>,  </span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.9</span>,<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>), </span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">1.5</span>, <span class="st">"lines"</span>),</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>,<span class="at">face=</span><span class="st">"bold"</span>),</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">"cm"</span>)  <span class="co"># Set uniform plot margins</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"High"</span> <span class="ot">=</span> <span class="st">"lightgreen"</span>, <span class="st">"Middle"</span> <span class="ot">=</span><span class="st">"lightblue"</span>, <span class="st">"Low"</span> <span class="ot">=</span> <span class="st">"yellow"</span>, <span class="st">"N.A."</span> <span class="ot">=</span> <span class="st">"gray"</span>)) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">" Property Types: Price comparison"</span>, <span class="at">hjust =</span> <span class="fl">0.8</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Categorized by Floor Level"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Property Type"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Unit Price ($ PSM)"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Floor Level Category"</span>) <span class="sc">+</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="fu">label_wrap_gen</span>(<span class="at">width =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box =</span> <span class="st">"horizontal"</span>,  </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.9</span>,<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">1.5</span>, <span class="st">"lines"</span>),</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>,<span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">"cm"</span>)  <span class="co"># Set uniform plot margins</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
