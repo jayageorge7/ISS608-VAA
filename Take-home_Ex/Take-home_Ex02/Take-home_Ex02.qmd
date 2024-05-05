@@ -10,20 +10,23 @@ execute:
   freeze: true
 ---
 
-# **1 Overview**
+# Take-home Exercise 2- Data viz Makeover
+
+# 1 Overview
 
 In this take-home exercise, I have selected one of my classmate[ Take-Home Exercise1](https://hafeszsidek.netlify.app/take-home_ex/take-home_ex01/take-home_ex01) in order to critique the submission in terms of **clarity** and **aesthetics.**
 
-Installing R Packages
+# 2 Data Preparation and installing packages
+
+Following preparation steps were done by my classmate for loading the required packages and to read in the input data.
+
+**Installing R Packages**
 
 ```{r}
+
 pacman::p_load(tidyverse,ggplot2,readr,dplyr,lubridate,stringr)
 
 ```
-
-# **2 Data Preparation and installing packages**
-
-Following the preparation steps done by my classmate to reading in the input data and loading the required packages.
 
 **Load and Consolidate Data**
 
@@ -37,7 +40,7 @@ realis <- bind_rows(realis_1, realis_2, realis_3, realis_4, realis_5)
 
 ```
 
-# **3 Data Wrangling**
+# 3 Data Wrangling
 
 **Amend Character Types**
 
@@ -92,7 +95,11 @@ realis2024Q1 <- realis2024Q1 %>%
 
 **Plot Boxplot**
 
+::: panel-tabset
+## Plot
+
 ```{r}
+#| echo: false
 # Reorder levels of 'Property Type' alphabetically
 realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`, levels = c("Apartment","Condominium","Terrace House", "Semi-Detached House","Detached House","Executive Condominium"))
 
@@ -108,56 +115,88 @@ ggplot(realis2024Q1, aes(x = `Property Type`, y = `Unit Price ($ PSM)`, fill = `
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+## Code
+
+```{r}
+#| eval: false
+# Reorder levels of 'Property Type' alphabetically
+realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`, levels = c("Apartment","Condominium","Terrace House", "Semi-Detached House","Detached House","Executive Condominium"))
+
+# Reorder levels of 'Floor Level Category' by "High", "Middle", "Low"
+realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category`, levels = c("High", "Middle", "Low"))
+
+# Create the boxplot using ggplot2
+ggplot(realis2024Q1, aes(x = `Property Type`, y = `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("N.A." = "gray", "Low" = "blue1", "Middle" ="blue3", "High" = "blue4")) +
+  labs(x = "Property Type", y = "Unit Price ($ PSM)", fill = "Floor Level Category") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+:::
+
+This box plot helps to understand the variability of prices among the different property types. An interesting insight about the price patterns among different floor categeries also has been derived out.
+
 ## **4 Critique**
 
 ## **4.1 Original Design**
 
-The original design is shown below:
+The original design is shown below. I have highlighted some of the elements which i am critiquing:
 
-![](images/clipboard-26488941.png)
+![](images/clipboard-953917317.png)
 
-Box plot helps to understand the variability of prices among the different propertytypes.
+## 4.2 Critique : Clarity and Aesthetics
 
-In property types with different floor categories helps to understand the pricing between the floor categories.
-
-## **4.2 Critique : Clarity and Aesthetics**
-
-### **4.2.1 Clarity**
+### 4.2.1 Clarity
 
 1.  The boxes are very compressed making it difficult to understand the position of medians
-2.  The box sizes are misleading, when we see boxes of varying sizes we would expect the box sizes to reflect the number of data points in that property type. In this case we would expect Terraced house,semi-detatched house and detatched house to have highest numbers,but from data it is clear that it is not the case.
+2.  The box sizes are misleading, when we see boxes of varying sizes we would expect the box sizes to reflect the number of data points in that property type. In this case,from the box plot, we would expect Terraced house,semi-detatched house and detatched house to have highest numbers,but from data it is clear that it is not the case.
 
-### **4.2.2 Aesthetics**
+### 4.2.2 Aesthetics
 
 1.  The x axis labels are lengthy and the 45 degree labels doesn't look aesthetically pleasing
 2.  The title is missing for the plot
-3.  The color choices for the fills are different tones of blue making it difficult to distinguish between the different categories and in the darkest blue color making it difficult to see the median line
+3.  The color choices for the fills are different tones of blue making it difficult to distinguish between the different categories, and in the darkest blue color it is difficult to see the median line.
 
-## **5 Sketch of Makeover design**
+## 5 Sketch of Makeover design
+
+![](images/clipboard-587170891.png){width="396"}
 
 ## 6 Data Viz Make over
 
-### **6.1 Clarity**
+### 6.1 Clarity
 
-1.  Reversing the x and y axes for the box plot will be useful as the categories on the x-axis can be numerical values and the lengthy labels can be on the y axis making it more readable. This will also help to stretch out the boxes thus making the spread and medians more visible and distinguishable.
-2.  Changed the order so that the Property types with different floor categories appear together.
-3.  Changed the order of Floor category types to appear vertically up
+1.  Reversing the x and y axes for the box plot will be useful as the categories on the x-axis can then be numerical values and the lengthy labels can be on the y axis making it more readable.
 
-### **6.2 Aesthetics**
+    This will also help to stretch out the boxes further, thus making the spread and medians more visible and distinguishable.
 
-1.  Added a title to the plot
+2.  Changed the order of the Property Types, so that the Property types with different floor categories appear together.
+
+3.  Changed the order of Floor category types to appear in the order of low,medium and high.
+
+4.  Tried using varwidth=TRUE, for the box plots to reflect the actual count of data points,but this didnt look visually appealing as some property types like Terraced house,semi-detatched house and detatched house has very less data points resulting in extremely narrow boxes making it difficult to see the median value.
+
+    Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for a property type and Terraced house,semi-detatched house and detatched house to have a fixed width, which again looked odd and not representative of the actual data.
+
+    Finally, used position_dodge2(preserve = "single") so that all boxes including the boxes corresponding to the different floor categories are of same size. This removed the distraction away from different sized box plots which are not representative of the data.
+
+### 6.2 Aesthetics
+
+1.  Added a title and sub title to the plot
 2.  Shifted the legend to the top of the plot
 3.  Used colours which are easy on the eyes and for more clarity
-4.  Wrapped the lengthy y-axis labels
+4.  Wrapped the lengthy y-axis labels to save space for the plot
 5.  Removed y axis title
 6.  Added margin for the plot
+7.  Set the figure width and height for the plot to look better
 
-### **6.3 Final Design**
+### 6.3 Final Design
 
-## 7. Conclusion
+::: panel-tabset
+## Plot
 
 ```{r  fig.width=15, fig.height=10}
-
+#| echo: false
 library(ggplot2)
 library(scales)
 
@@ -196,45 +235,21 @@ ggplot(realis2024Q1, aes(y = `Property Type`, x= `Unit Price ($ PSM)`, fill = `F
         axis.text.y = element_text(size = 20),
         axis.title.y = element_blank(),
         axis.title.x=element_text(size=20,face="bold"),
-        panel.grid.minor = element_blank(),  # Remove minor grid lines for a cleaner look
-        panel.background = element_rect(fill = "white", colour = "gray"),
         plot.margin = unit(c(1, 1, 1, 1), "cm")  # Set uniform plot margins
   )
 
 
 ```
 
-```{r  fig.width=15, fig.height=8}
-# Ensure the 'realis2024Q1' data frame is loaded and appropriate libraries are available
-library(ggplot2)
-
-# Reorder the levels of 'Property Type' alphabetically
-realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`,
-                                       levels = c("Apartment", "Condominium", "Executive Condominium","Terrace House", "Semi-Detached House", "Detached House"))
-
-# Reorder levels of 'Floor Level Category' in a specified order
-realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category`,
-                                              levels = c("High", "Middle", "Low"))
-
-# Create the boxplot using ggplot2
-ggplot(realis2024Q1, aes(y = `Property Type`, x = `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
-  geom_boxplot() +
-  scale_fill_manual(values = c("High" = "lightgreen", "Middle" ="lightblue", "Low" = "yellow", "N.A." = "gray")) +
-  labs(x = "Property Type", y = "Unit Price ($ PSM)", fill = "Floor Level Category") +
-  #theme_minimal() +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
-        legend.position = "bottom", # Puts legend below the plot
-        legend.box = "horizontal",  # Aligns legend items horizontally
-        legend.title = element_text(size = 12, face = "bold"), # Styles for legend title
-        legend.text = element_text(size = 12)) # Styles for legend text
-   # Rotate x-axis labels for better visibility
-
-```
+## Code
 
 ```{r  fig.width=15, fig.height=10}
+#| eval: false
+library(ggplot2)
+library(scales)
 
 
-# Reorder the levels of 'Property Type' alphabetically
+# Reorder the levels of 'Property Type' 
 realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`,
                                        levels = c("Apartment", "Condominium", "Executive Condominium","Terrace House", "Semi-Detached House", "Detached House"))
 
@@ -242,31 +257,44 @@ realis2024Q1$`Property Type` <- factor(realis2024Q1$`Property Type`,
 realis2024Q1$`Floor Level Category` <- factor(realis2024Q1$`Floor Level Category`,
                                               levels = c("Low", "Middle","High" ))
 
-
 # Create the boxplot using ggplot2
 ggplot(realis2024Q1, aes(y = `Property Type`, x= `Unit Price ($ PSM)`, fill = `Floor Level Category`)) +
-  geom_boxplot(#varwidth=TRUE,
-              # position = position_dodge(width = 0.90)
-               position = position_dodge2(preserve = "single")) +
+  geom_boxplot(position = position_dodge2(preserve = "single")
+    #varwidth=TRUE,
+    #width = 0.5,
+   # position = position_dodge(width = 0.15)
+  ) +
   scale_fill_manual(values = c("High" = "lightgreen", "Middle" ="lightblue", "Low" = "yellow", "N.A." = "gray")) +
-  labs(y = "Property Type", x = "Unit Price ($ PSM)", fill = "Floor Level Category") +
+  labs(title = " Property Types: Price comparison", hjust = 0.8,
+       subtitle = "Categorized by Floor Level",
+       y = "Property Type",
+       x = "Unit Price ($ PSM)",
+       fill = "Floor Level Category") +
   scale_y_discrete(labels = label_wrap_gen(width = 10)) +
-theme_minimal() +
   theme(
-    axis.text.x = element_text(size = 20,angle = 0, hjust = 1),  # Customize x-axis text size and color
-    axis.text.y = element_text(size = 20),
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 20),
-    axis.title.x = element_text(face = "bold", size = 20),
-    #axis.title.y = element_text(face = "bold", size = 20),
-    axis.title.y = element_blank(),
-    legend.position = "top",
-    legend.box = "horizontal", 
-    legend.title = element_text(size = 20, face = "bold"),
-    legend.text = element_text(size = 20),
-    panel.grid.minor = element_blank(), 
-    panel.background = element_rect(fill = "white", colour = "gray"),
-    plot.margin = unit(c(1, 1, 1, 1), "cm")  # Set uniform plot margins
+        legend.position = "top",
+        legend.box = "horizontal",  
+        legend.title = element_text(hjust = 0.9,size = 16, face = "bold"), 
+        legend.text = element_text(size = 20),
+        plot.title = element_text(hjust = 0.5,face = "bold", size = 20),
+        plot.subtitle = element_text(hjust = 0.5,face = "bold", size = 16),
+        legend.key.size = unit(1.5, "lines"),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20),
+        axis.title.y = element_blank(),
+        axis.title.x=element_text(size=20,face="bold"),
+        plot.margin = unit(c(1, 1, 1, 1), "cm")  # Set uniform plot margins
   )
 
-
 ```
+:::
+
+## 7. Conclusion
+
+This exercise helped me to get a deeper understanding of ggplot. It also helped me to look at a visualization from a layman's point of view and to design plots in clearer and simple ways which will help to convey the insight to the viewer.
+
+## 8. References
+
+<https://ggplot2.tidyverse.org/reference/geom_boxplot.html>
+
+<https://ggplot2.tidyverse.org/reference/position_dodge.html>
