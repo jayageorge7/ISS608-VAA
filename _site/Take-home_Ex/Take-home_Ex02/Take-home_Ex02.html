@@ -407,15 +407,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="clarity-1" class="level3">
 <h3 class="anchored" data-anchor-id="clarity-1">6.1 Clarity</h3>
 <ol type="1">
-<li><p>Reversing the x and y axes for the box plot will be useful as the categories on the x-axis can then be numerical values and the lengthy labels can be on the y axis making it more readable.</p>
+<li><p>Reversing the x and y axes for the box plot will be useful as the x-axis can then be numerical values and the lengthy labels can be on the y axis making it more readable.</p>
 <p>This will also help to stretch out the boxes further, thus making the spread and medians more visible and distinguishable.</p></li>
 <li><p>Changed the order of the Property Types, so that the Property types with different floor categories appear together.</p></li>
-<li><p>Changed the order of Floor category types to appear in the order of low,medium and high.</p></li>
+<li><p>Made the order of Floor category types to appear in the order of low,medium and high from bottom to up.</p></li>
 <li><p>Tried using varwidth=TRUE, for the box plots to reflect the actual count of data points,but this didnt look visually appealing as some property types like Terraced house,semi-detatched house and detatched house has very less data points resulting in extremely narrow boxes making it difficult to see the median value. (See Figure below)</p>
-<p><img src="images/clipboard-3020957854.png" class="img-fluid" width="326"></p>
-<p>Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for a property type and Terraced house,semi-detached house and detached house to have a fixed width, which again looked odd and not representative of the actual data. (See Figure below)</p>
-<p><img src="images/clipboard-3600425131.png" class="img-fluid" width="317"></p>
-<p>Finally, used position_dodge2(preserve = “single”) so that all boxes including the boxes corresponding to the different floor categories are of same size. This removed the distraction away from different sized box plots which are not representative of the data.</p></li>
+<p><img src="images/clipboard-3020957854.png" class="img-fluid" width="442"></p>
+<p>Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for (apartments,condominiums and executive-condominiums) and for (Terraced house,semi-detached house and detached houses) to have a fixed width, which again looked odd and not representative of the actual data. (See Figure below)</p>
+<p><img src="images/clipboard-3600425131.png" class="img-fluid" width="441"></p>
+<p>Finally, used position_dodge2(preserve = “single”) so that all boxes including the boxes corresponding to the different floor categories are of same size. This removed the distraction away from different sized box plots.</p></li>
 </ol>
 </section>
 <section id="aesthetics-1" class="level3">
@@ -423,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Added a title and sub title to the plot</li>
 <li>Shifted the legend to the top of the plot</li>
-<li>Used colours which are easy on the eyes and for more clarity</li>
+<li>Used lighter colours which are easy on the eyes and for more clarity</li>
 <li>Wrapped the lengthy y-axis labels to save space for the plot</li>
 <li>Removed y axis title</li>
 <li>Added margin for the plot</li>

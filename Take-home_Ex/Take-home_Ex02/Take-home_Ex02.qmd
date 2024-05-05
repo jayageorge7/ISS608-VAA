@@ -166,29 +166,29 @@ The original design is shown below. I have highlighted some of the elements whic
 
 ### 6.1 Clarity
 
-1.  Reversing the x and y axes for the box plot will be useful as the categories on the x-axis can then be numerical values and the lengthy labels can be on the y axis making it more readable.
+1.  Reversing the x and y axes for the box plot will be useful as the x-axis can then be numerical values and the lengthy labels can be on the y axis making it more readable.
 
     This will also help to stretch out the boxes further, thus making the spread and medians more visible and distinguishable.
 
 2.  Changed the order of the Property Types, so that the Property types with different floor categories appear together.
 
-3.  Changed the order of Floor category types to appear in the order of low,medium and high.
+3.  Made the order of Floor category types to appear in the order of low,medium and high from bottom to up.
 
 4.  Tried using varwidth=TRUE, for the box plots to reflect the actual count of data points,but this didnt look visually appealing as some property types like Terraced house,semi-detatched house and detatched house has very less data points resulting in extremely narrow boxes making it difficult to see the median value. (See Figure below)
 
-    ![](images/clipboard-3020957854.png){width="326"}
+    ![](images/clipboard-3020957854.png){width="442"}
 
-    Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for a property type and Terraced house,semi-detached house and detached house to have a fixed width, which again looked odd and not representative of the actual data. (See Figure below)
+    Also tried using fixed width size by setting width = 0.5 for the box plot. But this resulted in the fixed width being split among the different floor categories for (apartments,condominiums and executive-condominiums) and for (Terraced house,semi-detached house and detached houses) to have a fixed width, which again looked odd and not representative of the actual data. (See Figure below)
 
-    ![](images/clipboard-3600425131.png){width="317"}
+    ![](images/clipboard-3600425131.png){width="441"}
 
-    Finally, used position_dodge2(preserve = "single") so that all boxes including the boxes corresponding to the different floor categories are of same size. This removed the distraction away from different sized box plots which are not representative of the data.
+    Finally, used position_dodge2(preserve = "single") so that all boxes including the boxes corresponding to the different floor categories are of same size. This removed the distraction away from different sized box plots.
 
 ### 6.2 Aesthetics
 
 1.  Added a title and sub title to the plot
 2.  Shifted the legend to the top of the plot
-3.  Used colours which are easy on the eyes and for more clarity
+3.  Used lighter colours which are easy on the eyes and for more clarity
 4.  Wrapped the lengthy y-axis labels to save space for the plot
 5.  Removed y axis title
 6.  Added margin for the plot
