@@ -135,7 +135,9 @@ ggplot(realis2024Q1, aes(x = `Property Type`, y = `Unit Price ($ PSM)`, fill = `
 ```
 :::
 
-This box plot helps to understand the variability of prices among the different property types. An interesting insight about the price patterns among different floor categories also has been derived out.
+**Pros about the original design:**
+
+This box plot helps to understand the variability of prices among the different property types. My classmate has put in extra efforts to derive out the floor category from the source data which made it possible to create an interesting insight about the price patterns among different floor categories.
 
 ## **4 Critique**
 
