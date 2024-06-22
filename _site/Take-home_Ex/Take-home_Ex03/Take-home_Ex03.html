@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,19 +96,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="../../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+
 <script src="../../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+
 <script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
 <script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
 <link href="../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+
 <script src="../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
 <link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+
 <script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -112,9 +127,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">ISSS608-VAA</span>
     </a>
@@ -126,142 +141,146 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Hands-on Exercise</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
  <span class="dropdown-text">Hands-on Exercise 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
  <span class="dropdown-text">Hands-on Exercise 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03A.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03A.html">
  <span class="dropdown-text">Hands-on Exercise 3A</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03B.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03B.html">
  <span class="dropdown-text">Hands-on Exercise 3B</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04A.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04A.html">
  <span class="dropdown-text">Hands-on Exercise 4A</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04B.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04B.html">
  <span class="dropdown-text">Hands-on Exercise 4B</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04C.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04C.html">
  <span class="dropdown-text">Hands-on Exercise 4C</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html">
  <span class="dropdown-text">Hands-on Exercise 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html">
  <span class="dropdown-text">Hands-on Exercise 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.html">
  <span class="dropdown-text">Hands-on Exercise 7</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08A.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08A.html">
  <span class="dropdown-text">Hands-on Exercise 8A</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08B.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08B.html">
  <span class="dropdown-text">Hands-on Exercise 8B</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08C.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08C.html">
  <span class="dropdown-text">Hands-on Exercise 8C</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09A.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09A.html">
  <span class="dropdown-text">Hands-on Exercise 9A</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09B.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09B.html">
  <span class="dropdown-text">Hands-on Exercise 9B</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09C.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09C.html">
  <span class="dropdown-text">Hands-on Exercise 9C</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09D.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09D.html">
  <span class="dropdown-text">Hands-on Exercise 9D</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09E.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09E.html">
  <span class="dropdown-text">Hands-on Exercise 9E</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html" rel="" target="">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
  <span class="dropdown-text">Hands-on Exercise 10</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">In-class Exercise</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex01/In-class_Ex01.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex01/In-class_Ex01.html">
  <span class="dropdown-text">In-class Exercise 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex02/In-class_Ex02.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex02/In-class_Ex02.html">
  <span class="dropdown-text">In-class Exercise 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex04/In-class_Ex04.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex04/In-class_Ex04.html">
  <span class="dropdown-text">In-class Exercise 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex05/In-class_Ex05A.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex05/In-class_Ex05A.html">
  <span class="dropdown-text">In-class Exercise 5A</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex05/In-class_Ex05B.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex05/In-class_Ex05B.html">
  <span class="dropdown-text">In-class Exercise 5B</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex06/In-class_Ex06A.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex06/In-class_Ex06A.html">
  <span class="dropdown-text">In-class Exercise 6A</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex06/In-class_Ex06B.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex06/In-class_Ex06B.html">
  <span class="dropdown-text">In-class Exercise 6B</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex09/In-class_Ex09.html" rel="" target="">
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex09/In-class_Ex09.html">
  <span class="dropdown-text">In-class Exercise 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex10/In-class_Ex10.html">
+ <span class="dropdown-text">In-class Exercise 10</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Take-home exercise</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
         <li>
-    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html" rel="" target="">
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html">
  <span class="dropdown-text">Take-home exercise 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html" rel="" target="">
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html">
  <span class="dropdown-text">Take-home exercise 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex03/Take-home_Ex03.html" rel="" target="">
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex03/Take-home_Ex03.html">
  <span class="dropdown-text">Take-home exercise 3</span></a>
   </li>  
     </ul>
@@ -269,17 +288,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -375,7 +394,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="vast-challenge-mini-challenge-2" class="level1">
 <h1>VAST CHALLENGE Mini-Challenge 2</h1>
@@ -393,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="loading-r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="loading-r-packages"><strong>1.1 Loading R Packages</strong></h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>( sf , leaflet,ggplot2,dplyr,tmap,jsonlite,igraph,tidyverse,lubridate,plotly,ggraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -403,13 +424,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="loading-the-data"><strong>1.2 Loading the Data</strong></h2>
 <p>Loading the mc2 json data which is a directed multigraph consisting of nodes containing entities and edges containing relationships</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>json_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"data/mc2.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nodes_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(json_data<span class="sc">$</span>nodes)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>links_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(json_data<span class="sc">$</span>links)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -420,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="extracting-out-nodes-and-edges"><strong>1.2 Extracting out nodes and edges</strong></h2>
 <p>We are doing the analysis mostly on Fishing and Cargo Vessels</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vessels_df <span class="ot">&lt;-</span> nodes_df <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"Entity.Vessel.FishingVessel"</span> <span class="sc">|</span> type <span class="sc">==</span> <span class="st">"Entity.Vessel.Ferry.Cargo"</span> <span class="sc">|</span> type <span class="sc">==</span> <span class="st">"Entity.Vessel.CargoVessel"</span>) <span class="sc">%&gt;%</span></span>
@@ -458,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="processing-fish-locations-data-and-visualizing" class="level2">
 <h2 class="anchored" data-anchor-id="processing-fish-locations-data-and-visualizing"><strong>1.3 Processing fish locations data and visualizing</strong></h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial cleaning and splitting of fish species data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fishing_grounds_df <span class="ot">&lt;-</span> fishing_grounds_df <span class="sc">%&gt;%</span></span>
@@ -486,7 +507,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.25</span>, <span class="at">hjust=</span><span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Plot above shows the locations in which various fish varieties are found. Fishing is supposed to be done only in the designated fishing grounds and not in ecological preserves</p>
@@ -495,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="processing-transactionsharbor-report-and-delivery-report-data" class="level2">
 <h2 class="anchored" data-anchor-id="processing-transactionsharbor-report-and-delivery-report-data"><strong>1.4 Processing transactions,harbor report and delivery report data</strong></h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date columns to Date type</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>transactions_df<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(transactions_df<span class="sc">$</span>date)</span>
@@ -582,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exploring-outlier-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-outlier-data"><strong>2.1 Exploring outlier data</strong></h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>iqr_qty <span class="ot">&lt;-</span> <span class="fu">IQR</span>(transactions_cargo<span class="sc">$</span>qty_tons)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> <span class="fu">quantile</span>(transactions_cargo<span class="sc">$</span>qty_tons, <span class="fl">0.75</span>) <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr_qty</span>
@@ -596,7 +621,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Insight</strong> : Anomaly qty_tons are mostly greater than 70 tons</p>
@@ -604,7 +633,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-fish-arrivals-over-time" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-fish-arrivals-over-time"><strong>2.2</strong> Plotting fish arrivals over time</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>monthly_data <span class="ot">&lt;-</span> transactions_cargo <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month =</span> <span class="fu">format</span>(date_of_arrival, <span class="st">"%Y-%m"</span>))</span>
@@ -640,7 +669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-protected-fish-quantities-arriving-at-each-city-over-time" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-protected-fish-quantities-arriving-at-each-city-over-time"><strong>2.3</strong> Plotting protected fish quantities arriving at each city over time</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>city_time_analysis <span class="ot">&lt;-</span> transactions_cargo <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month_of_arrival =</span> <span class="fu">format</span>(date_of_arrival, <span class="st">"%Y-%m"</span>))</span>
@@ -692,7 +721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-dwell-time-of-vessels" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-dwell-time-of-vessels"><strong>2.4 Plotting dwell time of vessels</strong></h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of ecological preserves</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>preserve_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ghoti Preserve"</span>, <span class="st">"Nemo Reef"</span>, <span class="st">"Don Limpet Preserve"</span>)</span>
@@ -717,7 +746,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-630a8b08e5198a274c96" style="width:100%;height:464px;"></div>
 <script type="application/json" data-for="htmlwidget-630a8b08e5198a274c96">{"x":{"data":[{"orientation":"v","width":[293106664.95930803,325695930.87702698,433467019.44892401,645466432.79568899,420992368.40065098,1056160179.765572,180679860.746171,3805394.3022830002,1472920.153713,2907187.236509,74378224.342150003,124111490.224813,35126059.133835003,6694398.9857329996,6380461.0377730001,150416804.37071899,38950614.813995004,4708102.1923700003,206842805.472891,392686307.97991699],"base":[0.55000000000000004,1.55,2.5499999999999998,3.5499999999999998,4.5499999999999998,5.5499999999999998,7.5499999999999998,8.5500000000000007,9.5500000000000007,10.550000000000001,12.550000000000001,13.550000000000001,14.550000000000001,15.550000000000001,16.550000000000001,17.550000000000001,18.550000000000001,19.550000000000001,21.550000000000001,22.550000000000001],"x":[146553332.47965401,162847965.43851349,216733509.724462,322733216.39784449,210496184.20032549,528080089.88278598,90339930.373085499,1902697.1511415001,736460.0768565,1453593.6182545,37189112.171075001,62055745.1124065,17563029.566917501,3347199.4928664998,3190230.5188865,75208402.185359493,19475307.406997502,2354051.0961850001,103421402.7364455,196343153.98995849],"y":[0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"text":["total_dwell_time:  293106665.0<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  325695930.9<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  433467019.4<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  645466432.8<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  420992368.4<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time: 1056160179.8<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  180679860.7<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:    3805394.3<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:    1472920.2<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:    2907187.2<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:   74378224.3<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  124111490.2<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:   35126059.1<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:    6694399.0<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:    6380461.0<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  150416804.4<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:   38950614.8<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:    4708102.2<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  206842805.5<br />location: 0.9<br />preserve_status: Non-Preserve","total_dwell_time:  392686308.0<br />location: 0.9<br />preserve_status: Non-Preserve"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(102,102,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Non-Preserve","legendgroup":"Non-Preserve","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[287931.82953500003,52782194.665530004,122779311.599985],"base":[6.5499999999999998,11.550000000000001,20.550000000000001],"x":[143965.91476750001,26391097.332765002,61389655.799992502],"y":[0.90000000000000036,0.89999999999999858,0.89999999999999858],"text":["total_dwell_time:     287931.8<br />location: 0.9<br />preserve_status: Preserve","total_dwell_time:   52782194.7<br />location: 0.9<br />preserve_status: Preserve","total_dwell_time:  122779311.6<br />location: 0.9<br />preserve_status: Preserve"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,102,102,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Preserve","legendgroup":"Preserve","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":50.845818773908846,"l":160.00000000000003},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Total Dwell Time by Location","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-52808008.988278598,1108968188.7538505],"tickmode":"array","ticktext":["0.0e+00","2.5e+08","5.0e+08","7.5e+08","1.0e+09"],"tickvals":[0,250000000.00000003,500000000,750000000,1000000000],"categoryorder":"array","categoryarray":["0.0e+00","2.5e+08","5.0e+08","7.5e+08","1.0e+09"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Total Dwell Time","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,23.600000000000001],"tickmode":"array","ticktext":["City of Haacklee","City of Himark","City of Lomark","City of Paackland","City of South Paackland","Cod Table","Don Limpet Preserve","Exit East","Exit North","Exit South","Exit West","Ghoti Preserve","Nav 1","Nav 2","Nav 3","Nav A","Nav B","Nav C","Nav D","Nav E","Nemo Reef","Tuna Shelf","Wrasse Beds"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],"categoryorder":"array","categoryarray":["City of Haacklee","City of Himark","City of Lomark","City of Paackland","City of South Paackland","Cod Table","Don Limpet Preserve","Exit East","Exit North","Exit South","Exit West","Ghoti Preserve","Nav 1","Nav 2","Nav 3","Nav A","Nav B","Nav C","Nav D","Nav E","Nemo Reef","Tuna Shelf","Wrasse Beds"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"location","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"preserve_status","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"cd0c342f42f4":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"cd0c342f42f4","visdat":{"cd0c342f42f4":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -725,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Insights:</strong></p>
 <p>Fishing and Vessels seem to be spending considerable time in ecological preserves which needs to be investigated</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of ecological preserves</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>preserve_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ghoti Preserve"</span>, <span class="st">"Nemo Reef"</span>, <span class="st">"Don Limpet Preserve"</span>)</span>
@@ -747,7 +775,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="960"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Insights:</strong></p>
@@ -758,7 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="detect-anomaly-cargo-transactions-in-each-city" class="level3">
 <h3 class="anchored" data-anchor-id="detect-anomaly-cargo-transactions-in-each-city">3.1 Detect anomaly cargo transactions in each city</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fu">mean</span>(transactions_cargo<span class="sc">$</span>qty_tons) <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">sd</span>(transactions_cargo<span class="sc">$</span>qty_tons)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>anomalies <span class="ot">&lt;-</span> transactions_cargo[transactions_cargo<span class="sc">$</span>qty_tons <span class="sc">&gt;</span> threshold, ]</span>
@@ -850,7 +882,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-fish-quantities-arriving-at-each-city-over-time" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-fish-quantities-arriving-at-each-city-over-time"><strong>3.2</strong> Plotting fish quantities arriving at each city over time</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate quantity by city, fish type, and month of arrival (assuming you have a date_of_arrival column)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -889,7 +921,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-monthly-dwell-time-of-vessels-belonging-to-southseafood-express-corp" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-monthly-dwell-time-of-vessels-belonging-to-southseafood-express-corp">4.1 Plotting Monthly Dwell time of vessels belonging to SouthSeafood Express Corp</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate dwell time by month, city, and vessel_id</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dwell_time_by_month_city_vessel <span class="ot">&lt;-</span> transponder_ping_df <span class="sc">%&gt;%</span></span>
@@ -912,7 +944,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
 <div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a156595f968004cd0483" style="width:100%;height:464px;"></div>
 <script type="application/json" data-for="htmlwidget-a156595f968004cd0483">{"x":{"data":[{"orientation":"v","width":[882504.39215500001,1184446.983183,1889641.4891289999,919006.29637500003],"base":[0.55000000000000004,1.55,2.5500000000000003,3.5500000000000003],"x":[441252.1960775,592223.4915915,944820.74456449994,459503.14818750002],"y":[0.14999999999999991,0.12857142857142856,0.17999999999999972,0.17999999999999972],"text":["monthly_dwell_time:  882504.392<br />month: 0.1500000<br />location: City of Himark","monthly_dwell_time: 1184446.983<br />month: 0.1285714<br />location: City of Himark","monthly_dwell_time: 1889641.489<br />month: 0.1800000<br />location: City of Himark","monthly_dwell_time:  919006.296<br />month: 0.1800000<br />location: City of Himark"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"City of Himark","legendgroup":"City of Himark","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[12982.299243000001,12609.523341,3809.3088120000002],"base":[1.6785714285714286,2.73,3.73],"x":[6491.1496215000006,6304.7616705,1904.6544060000001],"y":[0.12857142857142856,0.17999999999999972,0.17999999999999972],"text":["monthly_dwell_time:   12982.299<br />month: 0.1285714<br />location: City of Lomark","monthly_dwell_time:   12609.523<br />month: 0.1800000<br />location: City of Lomark","monthly_dwell_time:    3809.309<br />month: 0.1800000<br />location: City of Lomark"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(222,140,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"City of Lomark","legendgroup":"City of Lomark","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[577016.47861700004,956062.47774300002,1006672.3167129999,524916.97737099999],"base":[0.55000000000000004,1.5500000000000003,2.5500000000000003,3.5499999999999998],"x":[288508.23930850002,478031.23887150001,503336.15835649997,262458.48868549999],"y":[0.11250000000000004,0.11249999999999982,0.11249999999999982,0.128571428571429],"text":["monthly_dwell_time:  577016.479<br />month: 0.1125000<br />location: City of Lomark","monthly_dwell_time:  956062.478<br />month: 0.1125000<br />location: City of Lomark","monthly_dwell_time: 1006672.317<br />month: 0.1125000<br />location: City of Lomark","monthly_dwell_time:  524916.977<br />month: 0.1285714<br />location: City of Lomark"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(222,140,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"City of Lomark","legendgroup":"City of Lomark","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":6707.7437639999998,"base":2.6625000000000001,"x":[3353.8718819999999],"y":[0.11249999999999982],"text":"monthly_dwell_time:    6707.744<br />month: 0.1125000<br />location: City of Paackland","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(183,159,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"City of Paackland","legendgroup":"City of Paackland","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":[484381.58286600001,376739.87387299997,843995.93019600003,446775.85300900001],"base":[0.66249999999999998,1.6625000000000001,2.7749999999999999,3.6785714285714284],"x":[242190.79143300001,188369.93693649999,421997.96509800002,223387.92650450001],"y":[0.11250000000000004,0.11249999999999982,0.11249999999999982,0.128571428571429],"text":["monthly_dwell_time:  484381.583<br />month: 0.1125000<br />location: Cod Table","monthly_dwell_time:  376739.874<br />month: 0.1125000<br />location: Cod Table","monthly_dwell_time:  843995.930<br />month: 0.1125000<br />location: Cod Table","monthly_dwell_time:  446775.853<br />month: 0.1285714<br />location: Cod Table"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Cod Table","legendgroup":"Cod Table","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":[357640.59913300001,30929.248829,137316.99249100001,36997.157825000002],"base":[0.77500000000000002,1.7750000000000001,2.8875000000000002,3.8071428571428569],"x":[178820.29956650001,15464.6244145,68658.496245500006,18498.578912500001],"y":[0.11250000000000004,0.11249999999999982,0.11249999999999982,0.128571428571429],"text":["monthly_dwell_time:  357640.599<br />month: 0.1125000<br />location: Exit East","monthly_dwell_time:   30929.249<br />month: 0.1125000<br />location: Exit East","monthly_dwell_time:  137316.992<br />month: 0.1125000<br />location: Exit East","monthly_dwell_time:   36997.158<br />month: 0.1285714<br />location: Exit East"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Exit East","legendgroup":"Exit East","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":[840520.45968100009,6410.3480250000002],"base":[0.88749999999999996,1.8875000000000002],"x":[420260.22984050005,3205.1740125000001],"y":[0.11250000000000004,0.11249999999999982],"text":["monthly_dwell_time:  840520.460<br />month: 0.1125000<br />location: Ghoti Preserve","monthly_dwell_time:    6410.348<br />month: 0.1125000<br />location: Ghoti Preserve"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,192,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Ghoti Preserve","legendgroup":"Ghoti Preserve","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":[12969.607316,12551.276875],"base":[0.70000000000000007,1.8071428571428572],"x":[6484.8036579999998,6275.6384374999998],"y":[0.14999999999999991,0.12857142857142856],"text":["monthly_dwell_time:   12969.607<br />month: 0.1500000<br />location: Nav 1","monthly_dwell_time:   12551.277<br />month: 0.1285714<br />location: Nav 1"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Nav 1","legendgroup":"Nav 1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[106090.577168,89163.101068999997,51972.360050999996,31276.581059],"base":[0.99999999999999989,2,3,3.9357142857142855],"x":[53045.288584000002,44581.550534499998,25986.180025499998,15638.2905295],"y":[0.11249999999999993,0.11249999999999982,0.11249999999999982,0.12857142857142856],"text":["monthly_dwell_time:  106090.577<br />month: 0.1125000<br />location: Nav 1","monthly_dwell_time:   89163.101<br />month: 0.1125000<br />location: Nav 1","monthly_dwell_time:   51972.360<br />month: 0.1125000<br />location: Nav 1","monthly_dwell_time:   31276.581<br />month: 0.1285714<br />location: Nav 1"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Nav 1","legendgroup":"Nav 1","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":[37082.045415000001,15282.239793000001,93652.766746000008,74215.689626000007],"base":[1.1125,2.1125000000000003,3.1125000000000003,4.0642857142857149],"x":[18541.0227075,7641.1198965000003,46826.383373000004,37107.844813000003],"y":[0.11249999999999982,0.11249999999999982,0.11249999999999982,0.12857142857142811],"text":["monthly_dwell_time:   37082.045<br />month: 0.1125000<br />location: Nav 2","monthly_dwell_time:   15282.240<br />month: 0.1125000<br />location: Nav 2","monthly_dwell_time:   93652.767<br />month: 0.1125000<br />location: Nav 2","monthly_dwell_time:   74215.690<br />month: 0.1285714<br />location: Nav 2"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,180,240,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Nav 2","legendgroup":"Nav 2","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":[9986.5156299999999,10860.559085999999],"base":[0.85000000000000009,1.9357142857142857],"x":[4993.2578149999999,5430.2795429999996],"y":[0.14999999999999991,0.12857142857142878],"text":["monthly_dwell_time:    9986.516<br />month: 0.1500000<br />location: Nav A","monthly_dwell_time:   10860.559<br />month: 0.1285714<br />location: Nav A"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Nav A","legendgroup":"Nav A","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[379718.35173599998,422935.12697300001,212604.38940099999,110781.894197],"base":[1,2.0642857142857141,2.9100000000000001,3.9100000000000001],"x":[189859.17586799999,211467.5634865,106302.1947005,55390.947098500001],"y":[0.14999999999999991,0.128571428571429,0.17999999999999972,0.17999999999999972],"text":["monthly_dwell_time:  379718.352<br />month: 0.1500000<br />location: Nav C","monthly_dwell_time:  422935.127<br />month: 0.1285714<br />location: Nav C","monthly_dwell_time:  212604.389<br />month: 0.1800000<br />location: Nav C","monthly_dwell_time:  110781.894<br />month: 0.1800000<br />location: Nav C"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Nav C","legendgroup":"Nav C","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[37886.447969000001,61249.673900000002,49968.179735999998,21436.89141],"base":[1.2250000000000001,2.2250000000000001,3.2250000000000001,4.1928571428571431],"x":[18943.2239845,30624.836950000001,24984.089867999999,10718.445705],"y":[0.11249999999999982,0.11249999999999982,0.11249999999999982,0.12857142857142811],"text":["monthly_dwell_time:   37886.448<br />month: 0.1125000<br />location: Nav C","monthly_dwell_time:   61249.674<br />month: 0.1125000<br />location: Nav C","monthly_dwell_time:   49968.180<br />month: 0.1125000<br />location: Nav C","monthly_dwell_time:   21436.891<br />month: 0.1285714<br />location: Nav C"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Nav C","legendgroup":"Nav C","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"orientation":"v","width":[21060.776549000002,14955.506727,14861.882389,9994.4969669999991],"base":[1.1500000000000001,2.1928571428571426,3.0899999999999999,4.0899999999999999],"x":[10530.388274500001,7477.7533635,7430.9411945000002,4997.2484834999996],"y":[0.14999999999999991,0.128571428571429,0.17999999999999972,0.17999999999999972],"text":["monthly_dwell_time:   21060.777<br />month: 0.1500000<br />location: Nav E","monthly_dwell_time:   14955.507<br />month: 0.1285714<br />location: Nav E","monthly_dwell_time:   14861.882<br />month: 0.1800000<br />location: Nav E","monthly_dwell_time:    9994.497<br />month: 0.1800000<br />location: Nav E"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(245,100,227,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Nav E","legendgroup":"Nav E","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[897808.53177700005,956210.82901400002,340657.35525199998,180552.98714899999],"base":[1.3,2.3214285714285712,3.27,4.2700000000000005],"x":[448904.26588850003,478105.41450700001,170328.67762599999,90276.493574499997],"y":[0.14999999999999991,0.128571428571429,0.17999999999999972,0.17999999999999972],"text":["monthly_dwell_time:  897808.532<br />month: 0.1500000<br />location: Wrasse Beds","monthly_dwell_time:  956210.829<br />month: 0.1285714<br />location: Wrasse Beds","monthly_dwell_time:  340657.355<br />month: 0.1800000<br />location: Wrasse Beds","monthly_dwell_time:  180552.987<br />month: 0.1800000<br />location: Wrasse Beds"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,100,176,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Wrasse Beds","legendgroup":"Wrasse Beds","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[7940.735036,1092582.0996310001,457053.18150499999,3920.0590889999999],"base":[1.3374999999999999,2.3374999999999999,3.3374999999999999,4.3214285714285721],"x":[3970.367518,546291.04981550004,228526.59075249999,1960.0295444999999],"y":[0.11249999999999982,0.11249999999999982,0.11249999999999982,0.12857142857142811],"text":["monthly_dwell_time:    7940.735<br />month: 0.1125000<br />location: Wrasse Beds","monthly_dwell_time: 1092582.100<br />month: 0.1125000<br />location: Wrasse Beds","monthly_dwell_time:  457053.182<br />month: 0.1125000<br />location: Wrasse Beds","monthly_dwell_time:    3920.059<br />month: 0.1285714<br />location: Wrasse Beds"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,100,176,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Wrasse Beds","legendgroup":"Wrasse Beds","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":54.389373183893731,"r":7.3059360730593621,"b":69.406392694063939,"l":66.484018264840202},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Monthly Dwell Time by City for Company A, by Vessel","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,0.47309197651663404],"automargin":true,"type":"linear","autorange":false,"range":[-94482.074456450006,1984123.5635854499],"tickmode":"array","ticktext":["0","500000","1000000","1500000"],"tickvals":[0,500000.00000000006,1000000,1500000],"categoryorder":"array","categoryarray":["0","500000","1000000","1500000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"annotations":[{"text":"Dwell Time","x":0.5,"y":0,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis","yshift":-51.14155251141554},{"text":"Month","x":0,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis","xshift":-51.14155251141554},{"text":"roachrobberdb6","x":0.23654598825831702,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":10.62681610626816},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"snappersnatcher7be","x":0.76345401174168304,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":10.62681610626816},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["2035-02","2035-03","2035-04","2035-05"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["2035-02","2035-03","2035-04","2035-05"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.47309197651663404,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.47309197651663404,"y0":0,"y1":22.316313823163142,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.52690802348336596,"x1":1,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.52690802348336596,"x1":1,"y0":0,"y1":22.316313823163142,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[-94482.074456450006,1984123.5635854499],"tickmode":"array","ticktext":["0","500000","1000000","1500000"],"tickvals":[0,500000.00000000006,1000000,1500000],"categoryorder":"array","categoryarray":["0","500000","1000000","1500000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.52690802348336596,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["2035-02","2035-03","2035-04","2035-05"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["2035-02","2035-03","2035-04","2035-05"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x2","title":"","hoverformat":".2f"},"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"location","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"cd0c7be25820":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"cd0c7be25820","visdat":{"cd0c7be25820":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -926,7 +957,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="heatmap-of-dwell-time" class="level3">
 <h3 class="anchored" data-anchor-id="heatmap-of-dwell-time">4.2 Heatmap of dwell time</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(transponder_ping_south_df, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> location, <span class="at">fill =</span> total_dwell_time)) <span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span>  <span class="co"># Adds borders to each tile</span></span>
@@ -940,7 +971,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Insight:</strong></p>
@@ -958,7 +993,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="deep-dive-into-arrivals-for-wrasse-in-himark-in-feb" class="level3">
 <h3 class="anchored" data-anchor-id="deep-dive-into-arrivals-for-wrasse-in-himark-in-feb">5.2 Deep dive into arrivals for Wrasse in Himark in Feb</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set hardcoded values</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>hardcoded_city <span class="ot">&lt;-</span> <span class="st">"City of Himark"</span></span>
@@ -995,7 +1030,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="finding-transshipment-possibilities-around-feb-12"><strong>5.3 Finding Transshipment Possibilities around Feb 12</strong></h3>
 <p>Below logic looks for Transhipment possibilities. So it looks for vessels which have visited the same locations as the suspected vessel in the vicinity of the suspected transaction and also arrived at the suspected port one day before the suspected transaction.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#logic to zero in on potential transshipment vessels</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Hardcoded parameters</span></span>
@@ -1046,7 +1081,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plot-path-of-southseafood-vessels-around-feb-12" class="level3">
 <h3 class="anchored" data-anchor-id="plot-path-of-southseafood-vessels-around-feb-12">5.3 Plot path of SouthSeafood Vessels around Feb 12</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>transponder_ping_selected <span class="ot">&lt;-</span> transponder_ping_df <span class="sc">%&gt;%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"^snappersnatcher7be"</span>, vessel_id)<span class="sc">|</span> <span class="co">#grepl("^stout369", vessel_id)|</span></span>
@@ -1101,7 +1136,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>         <span class="at">linetype =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Insights:</strong></p>
@@ -1112,7 +1151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="finding-transshipment-possibilities-around-feb-8" class="level3">
 <h3 class="anchored" data-anchor-id="finding-transshipment-possibilities-around-feb-8"><strong>5.4 Finding Transshipment Possibilities around Feb 8</strong></h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#logic to zero in on potential transshipment vessels</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Hardcoded parameters</span></span>
@@ -1161,7 +1200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plot-path-of-southseafood-vessels-around-feb-8" class="level3">
 <h3 class="anchored" data-anchor-id="plot-path-of-southseafood-vessels-around-feb-8">5.5 Plot path of SouthSeafood Vessels around Feb 8</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>transponder_ping_selected <span class="ot">&lt;-</span> transponder_ping_df <span class="sc">%&gt;%</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"^snappersnatcher7be"</span>, vessel_id)<span class="sc">|</span> <span class="fu">grepl</span>(<span class="st">"^roachrobberdb6"</span>, vessel_id) <span class="sc">|</span>  <span class="fu">grepl</span>(<span class="st">"^tigermuskellungemaster012"</span>, vessel_id),  date<span class="sc">==</span><span class="st">'2035-02-01'</span><span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-02-02'</span> <span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-02-03'</span> <span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-02-04'</span> <span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-02-05'</span><span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-02-06'</span><span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-02-07'</span>)</span>
@@ -1212,7 +1251,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Insights:</strong></p>
@@ -1228,7 +1271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="top-10-vessels-with-highest-dwell-time-in-ghoti-preserve">6.1 Top 10 vessels with highest Dwell time in Ghoti Preserve</h3>
 <p>Looking for dwell time in Ghoti Preserve, as piscisosseusb6d is only found in Ghoti Preserve and hence is a protected species.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify hardcoded city and month</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>hardcoded_city <span class="ot">&lt;-</span> <span class="st">"Ghoti Preserve"</span></span>
@@ -1284,7 +1327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="deepdive-into-piscisosseusb6d-transactions-in-city-of-paackland-in-november" class="level3">
 <h3 class="anchored" data-anchor-id="deepdive-into-piscisosseusb6d-transactions-in-city-of-paackland-in-november">6.2 Deepdive into piscisosseusb6d transactions in City of Paackland in November</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set hardcoded values</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>hardcoded_city <span class="ot">&lt;-</span> <span class="st">"City of Paackland"</span></span>
@@ -1322,7 +1365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="finding-transshipment-possibilities-for-brillbandit0a1">6.3 Finding Transshipment Possibilities for brillbandit0a1</h3>
 <p>Below logic looks for Transhipment possibilities. So it looks for vessels which have visited the same locations as the suspected vessel in the vicinity of the suspected transaction and also arrived at the suspected port one day before the suspected transaction.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#logic to zero in on potential transshipment vessels</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Hardcoded parameters</span></span>
@@ -1371,7 +1414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-the-path-of-suspected-vessels-along-with-blackdrumbanditc5b" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-the-path-of-suspected-vessels-along-with-blackdrumbanditc5b">6.4 Plotting the path of suspected vessels along with blackdrumbanditc5b</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>transponder_ping_selected <span class="ot">&lt;-</span> transponder_ping_df <span class="sc">%&gt;%</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"^brillbandit0a1"</span>, vessel_id)<span class="sc">|</span> <span class="fu">grepl</span>(<span class="st">"^blackdrumbanditc5b"</span>, vessel_id)<span class="sc">|</span> <span class="fu">grepl</span>(<span class="st">"^transglobal266"</span>, vessel_id) , date<span class="sc">==</span><span class="st">'2035-11-24'</span> <span class="sc">|</span>date<span class="sc">==</span><span class="st">'2035-11-25'</span> <span class="sc">|</span>date<span class="sc">==</span><span class="st">'2035-11-26'</span> <span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-11-27'</span> <span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-11-28'</span> <span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-11-29'</span>)</span>
@@ -1423,7 +1466,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Insights:</strong></p>
@@ -1433,7 +1480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="finding-transshipment-possibilities-for-tunataker80c">6.5 Finding Transshipment Possibilities for tunataker80c</h3>
 <p>Below logic looks for Transhipment possibilities. So it looks for vessels which have visited the same locations as the suspected vessel in the vicinity of the suspected transaction and also arrived at the suspected port one day before the suspected transaction.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#logic to zero in on potential transshipment vessels</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Hardcoded parameters</span></span>
@@ -1482,7 +1529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-the-path-of-suspected-vessels-along-with-tunataker80c" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-the-path-of-suspected-vessels-along-with-tunataker80c">6.4 Plotting the path of suspected vessels along with tunataker80c</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>transponder_ping_selected <span class="ot">&lt;-</span> transponder_ping_df <span class="sc">%&gt;%</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"^blackdrumbanditc5b"</span>, vessel_id)<span class="sc">|</span> <span class="fu">grepl</span>(<span class="st">"^tunataker80c"</span>, vessel_id) , date<span class="sc">==</span><span class="st">'2035-11-28'</span> <span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-11-29'</span><span class="sc">|</span> date<span class="sc">==</span><span class="st">'2035-11-30'</span>)</span>
@@ -1534,7 +1581,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Insights:</strong></p>
@@ -1543,7 +1594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="network-analysis-for-southseafood-express-corp" class="level3">
 <h3 class="anchored" data-anchor-id="network-analysis-for-southseafood-express-corp">7. Network analysis for SouthSeafood Express Corp</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the dataframe for a specific company </span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>transponder_ping_filtered_df <span class="ot">&lt;-</span> transponder_ping_day_sum_df <span class="sc">%&gt;%</span></span>
@@ -1573,7 +1624,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Network Visualization of Vessel Movements for SouthSeafood Express Corp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Central and High-Activity Locations</strong>:</p>
@@ -1587,7 +1642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="geographical-path-plotting-for-southseafood-express-corp" class="level3">
 <h3 class="anchored" data-anchor-id="geographical-path-plotting-for-southseafood-express-corp">8. Geographical path plotting for SouthSeafood Express Corp</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>OceanusGeography <span class="ot">=</span> <span class="fu">st_read</span>(<span class="st">"data/Oceanus Geography.geojson"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1602,7 +1657,7 @@ Dimension:     XY
 Bounding box:  xmin: -167.0654 ymin: 38.07452 xmax: -163.2723 ymax: 40.67775
 Geodetic CRS:  WGS 84</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(OceanusGeography, <span class="st">"data/rds/OceanusGeography.rds"</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>OceanusLocations <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"data/shp"</span>,<span class="at">layer =</span> <span class="st">"Oceanus Geography"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1617,7 +1672,7 @@ Dimension:     XY
 Bounding box:  xmin: -167.0654 ymin: 38.07452 xmax: -163.2723 ymax: 40.67775
 Geodetic CRS:  WGS 84</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(OceanusLocations, <span class="st">"data/rds/OceanusLocations.rds"</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>vessel_movement_data <span class="ot">&lt;-</span> transponder_ping_df <span class="sc">%&gt;%</span></span>
@@ -1672,11 +1727,15 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span>, <span class="at">color =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>vessel_trajectory_selected_roach <span class="ot">&lt;-</span> vessel_trajectory <span class="sc">%&gt;%</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(vessel_id <span class="sc">==</span> <span class="st">"roachrobberdb6"</span>)</span>
@@ -1694,7 +1753,11 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span>, <span class="at">color =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex03_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <ul>
@@ -1796,10 +1859,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1809,8 +1889,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1822,7 +1911,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1866,6 +2078,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1891,6 +2104,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1951,6 +2190,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
